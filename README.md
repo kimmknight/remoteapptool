@@ -4,7 +4,7 @@ RemoteApp Tool is a utility that allows you to create/manage RemoteApps hosted o
 
 [Visit the website](http://www.kimknight.net/remoteapptool)
 
-This project has was made open-source on 29/9/2019.
+The project was made open-source on 29/9/2019.
 
 I started this project in 2011 as an inexperienced developer playing with VB.NET. Over the years I have changed and improved the functionality, but the code remains awful.
 
