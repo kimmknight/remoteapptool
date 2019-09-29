@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RemoteApp Tool", "RemoteApp Tool.vbproj", "{2D140FE4-0794-43AC-BE7B-9D918B3F9C61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{785B6808-B2FE-4C18-9D63-6DAB46482374} = {785B6808-B2FE-4C18-9D63-6DAB46482374}
+		{E1CB5F9C-230F-4967-8F19-335F8E4A4906} = {E1CB5F9C-230F-4967-8F19-335F8E4A4906}
+		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA} = {258307D5-A407-4622-BF1A-BDCA8E3D2FAA}
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RemoteAppLib", "..\RemoteAppLib\RemoteAppLib.vbproj", "{785B6808-B2FE-4C18-9D63-6DAB46482374}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RDP2MSILib", "..\RDP2MSILib\RDP2MSILib.vbproj", "{E1CB5F9C-230F-4967-8F19-335F8E4A4906}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RDP2MSI", "..\RDP2MSI\RDP2MSI.vbproj", "{1001A958-40DB-4444-9CD7-09D1188072D1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E1CB5F9C-230F-4967-8F19-335F8E4A4906} = {E1CB5F9C-230F-4967-8F19-335F8E4A4906}
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RDPFileLib", "..\RDPFileLib\RDPFileLib.vbproj", "{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D140FE4-0794-43AC-BE7B-9D918B3F9C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D140FE4-0794-43AC-BE7B-9D918B3F9C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D140FE4-0794-43AC-BE7B-9D918B3F9C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D140FE4-0794-43AC-BE7B-9D918B3F9C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785B6808-B2FE-4C18-9D63-6DAB46482374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785B6808-B2FE-4C18-9D63-6DAB46482374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785B6808-B2FE-4C18-9D63-6DAB46482374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785B6808-B2FE-4C18-9D63-6DAB46482374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1CB5F9C-230F-4967-8F19-335F8E4A4906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1CB5F9C-230F-4967-8F19-335F8E4A4906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1CB5F9C-230F-4967-8F19-335F8E4A4906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1CB5F9C-230F-4967-8F19-335F8E4A4906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1001A958-40DB-4444-9CD7-09D1188072D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1001A958-40DB-4444-9CD7-09D1188072D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1001A958-40DB-4444-9CD7-09D1188072D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1001A958-40DB-4444-9CD7-09D1188072D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
