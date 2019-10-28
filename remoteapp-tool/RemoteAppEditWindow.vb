@@ -139,7 +139,7 @@ Public Class RemoteAppEditWindow
 
         Dim SysApps As New SystemRemoteApps
 
-        If Not RemoteApp.Name Is Nothing Then If Not RemoteApp.Name = ShortName Then SysApps.RenameApp(RemoteApp.Name, ShortName)
+        If (Not RemoteApp.Name Is Nothing) And Not (Me.Text = "New RemoteApp") Then If Not RemoteApp.Name = ShortName Then SysApps.RenameApp(RemoteApp.Name, ShortName)
 
         RemoteApp.Name = ShortName
         RemoteApp.FullName = FullName
