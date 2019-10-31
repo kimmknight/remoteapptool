@@ -67,12 +67,18 @@ Partial Class RemoteAppCreateClientConnection
         Me.FileTypesGroupBox = New System.Windows.Forms.GroupBox()
         Me.FTACountLabel = New System.Windows.Forms.Label()
         Me.DisabledFTACheckBox = New System.Windows.Forms.CheckBox()
+        Me.GroupBoxSignRDP = New System.Windows.Forms.GroupBox()
+        Me.CertificateComboBox = New System.Windows.Forms.ComboBox()
+        Me.CertificateLabel = New System.Windows.Forms.Label()
+        Me.CheckBoxSignRDPDisabled = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxCreateSignedAndUnsigned = New System.Windows.Forms.CheckBox()
         Me.ServerGroupBox.SuspendLayout()
         Me.RDGWGroupBox.SuspendLayout()
         Me.ClientConnectionGroupBox.SuspendLayout()
         Me.MSIGroupBox.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.FileTypesGroupBox.SuspendLayout()
+        Me.GroupBoxSignRDP.SuspendLayout()
         Me.SuspendLayout()
         '
         'EditAfterSave
@@ -107,7 +113,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.CreateButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.CreateButton.ImageIndex = 6
         Me.CreateButton.ImageList = Me.SmallerIcons
-        Me.CreateButton.Location = New System.Drawing.Point(416, 482)
+        Me.CreateButton.Location = New System.Drawing.Point(416, 546)
         Me.CreateButton.Name = "CreateButton"
         Me.CreateButton.Size = New System.Drawing.Size(80, 29)
         Me.CreateButton.TabIndex = 8
@@ -128,7 +134,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.CancelEditButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.CancelEditButton.ImageIndex = 4
         Me.CancelEditButton.ImageList = Me.SmallerIcons
-        Me.CancelEditButton.Location = New System.Drawing.Point(343, 482)
+        Me.CancelEditButton.Location = New System.Drawing.Point(343, 546)
         Me.CancelEditButton.Name = "CancelEditButton"
         Me.CancelEditButton.Size = New System.Drawing.Size(67, 29)
         Me.CancelEditButton.TabIndex = 7
@@ -397,7 +403,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.TopLevelRadioButton.AutoSize = True
         Me.TopLevelRadioButton.Location = New System.Drawing.Point(366, 17)
         Me.TopLevelRadioButton.Name = "TopLevelRadioButton"
-        Me.TopLevelRadioButton.Size = New System.Drawing.Size(72, 19)
+        Me.TopLevelRadioButton.Size = New System.Drawing.Size(71, 19)
         Me.TopLevelRadioButton.TabIndex = 4
         Me.TopLevelRadioButton.Text = "Top level"
         Me.TopLevelRadioButton.UseVisualStyleBackColor = True
@@ -489,7 +495,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.ResetButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ResetButton.ImageIndex = 3
         Me.ResetButton.ImageList = Me.SmallerIcons
-        Me.ResetButton.Location = New System.Drawing.Point(126, 482)
+        Me.ResetButton.Location = New System.Drawing.Point(126, 546)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(121, 29)
         Me.ResetButton.TabIndex = 6
@@ -504,7 +510,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.SaveButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.SaveButton.ImageIndex = 0
         Me.SaveButton.ImageList = Me.SmallerIcons
-        Me.SaveButton.Location = New System.Drawing.Point(12, 482)
+        Me.SaveButton.Location = New System.Drawing.Point(12, 546)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(108, 29)
         Me.SaveButton.TabIndex = 5
@@ -543,6 +549,64 @@ Partial Class RemoteAppCreateClientConnection
         Me.DisabledFTACheckBox.Text = "Disabled"
         Me.DisabledFTACheckBox.UseVisualStyleBackColor = True
         '
+        'GroupBoxSignRDP
+        '
+        Me.GroupBoxSignRDP.Controls.Add(Me.CheckBoxCreateSignedAndUnsigned)
+        Me.GroupBoxSignRDP.Controls.Add(Me.CertificateComboBox)
+        Me.GroupBoxSignRDP.Controls.Add(Me.CertificateLabel)
+        Me.GroupBoxSignRDP.Controls.Add(Me.CheckBoxSignRDPDisabled)
+        Me.GroupBoxSignRDP.Location = New System.Drawing.Point(12, 477)
+        Me.GroupBoxSignRDP.Name = "GroupBoxSignRDP"
+        Me.GroupBoxSignRDP.Size = New System.Drawing.Size(482, 63)
+        Me.GroupBoxSignRDP.TabIndex = 4
+        Me.GroupBoxSignRDP.TabStop = False
+        Me.GroupBoxSignRDP.Text = "Sign RDP"
+        '
+        'CertificateComboBox
+        '
+        Me.CertificateComboBox.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.CertificateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CertificateComboBox.Enabled = False
+        Me.CertificateComboBox.FormattingEnabled = True
+        Me.CertificateComboBox.Location = New System.Drawing.Point(268, 25)
+        Me.CertificateComboBox.Name = "CertificateComboBox"
+        Me.CertificateComboBox.Size = New System.Drawing.Size(191, 23)
+        Me.CertificateComboBox.TabIndex = 24
+        '
+        'CertificateLabel
+        '
+        Me.CertificateLabel.AutoSize = True
+        Me.CertificateLabel.Location = New System.Drawing.Point(205, 28)
+        Me.CertificateLabel.Name = "CertificateLabel"
+        Me.CertificateLabel.Size = New System.Drawing.Size(64, 15)
+        Me.CertificateLabel.TabIndex = 23
+        Me.CertificateLabel.Text = "Certificate:"
+        '
+        'CheckBoxSignRDPDisabled
+        '
+        Me.CheckBoxSignRDPDisabled.AutoSize = True
+        Me.CheckBoxSignRDPDisabled.Checked = True
+        Me.CheckBoxSignRDPDisabled.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxSignRDPDisabled.Location = New System.Drawing.Point(10, 22)
+        Me.CheckBoxSignRDPDisabled.Name = "CheckBoxSignRDPDisabled"
+        Me.CheckBoxSignRDPDisabled.Size = New System.Drawing.Size(71, 19)
+        Me.CheckBoxSignRDPDisabled.TabIndex = 0
+        Me.CheckBoxSignRDPDisabled.Text = "Disabled"
+        Me.CheckBoxSignRDPDisabled.UseVisualStyleBackColor = True
+        '
+        'CheckBoxCreateSignedAndUnsigned
+        '
+        Me.CheckBoxCreateSignedAndUnsigned.AutoSize = True
+        Me.CheckBoxCreateSignedAndUnsigned.Checked = True
+        Me.CheckBoxCreateSignedAndUnsigned.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxCreateSignedAndUnsigned.Enabled = False
+        Me.CheckBoxCreateSignedAndUnsigned.Location = New System.Drawing.Point(10, 38)
+        Me.CheckBoxCreateSignedAndUnsigned.Name = "CheckBoxCreateSignedAndUnsigned"
+        Me.CheckBoxCreateSignedAndUnsigned.Size = New System.Drawing.Size(175, 19)
+        Me.CheckBoxCreateSignedAndUnsigned.TabIndex = 25
+        Me.CheckBoxCreateSignedAndUnsigned.Text = "Create Signed and Unsigned"
+        Me.CheckBoxCreateSignedAndUnsigned.UseVisualStyleBackColor = True
+        '
         'RemoteAppCreateClientConnection
         '
         Me.AcceptButton = Me.CreateButton
@@ -550,7 +614,8 @@ Partial Class RemoteAppCreateClientConnection
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.CancelEditButton
-        Me.ClientSize = New System.Drawing.Size(507, 523)
+        Me.ClientSize = New System.Drawing.Size(507, 587)
+        Me.Controls.Add(Me.GroupBoxSignRDP)
         Me.Controls.Add(Me.FileTypesGroupBox)
         Me.Controls.Add(Me.MSIGroupBox)
         Me.Controls.Add(Me.ClientConnectionGroupBox)
@@ -579,6 +644,8 @@ Partial Class RemoteAppCreateClientConnection
         Me.Panel1.PerformLayout()
         Me.FileTypesGroupBox.ResumeLayout(False)
         Me.FileTypesGroupBox.PerformLayout()
+        Me.GroupBoxSignRDP.ResumeLayout(False)
+        Me.GroupBoxSignRDP.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -625,4 +692,9 @@ Partial Class RemoteAppCreateClientConnection
     Friend WithEvents FileTypesGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents DisabledFTACheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents FTACountLabel As System.Windows.Forms.Label
+    Friend WithEvents GroupBoxSignRDP As GroupBox
+    Friend WithEvents CheckBoxSignRDPDisabled As CheckBox
+    Friend WithEvents CertificateComboBox As ComboBox
+    Friend WithEvents CertificateLabel As Label
+    Friend WithEvents CheckBoxCreateSignedAndUnsigned As CheckBox
 End Class

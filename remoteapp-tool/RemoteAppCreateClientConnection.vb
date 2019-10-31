@@ -8,6 +8,7 @@ Public Class RemoteAppCreateClientConnection
 
         RemoteApp = SelectedRemoteApp
 
+        Dim rdpSign As New RDPSign.RDPSign
         Dim RemoteAppShortName = RemoteApp.Name
         Me.Text = "Create Client Connection for " & RemoteAppShortName
 
@@ -33,6 +34,8 @@ Public Class RemoteAppCreateClientConnection
 
         If Not RemoteApp.FileTypeAssociations Is Nothing Then _
         FTACountLabel.Text = "Count: " & RemoteApp.FileTypeAssociations.Count
+
+        CertificateComboBox.Items.AddRange(rdpSign.GetCertificateFriendlyName)
 
         Me.RDPRadioButton.Focus()
         HelpSystem.SetupTips(Me)
@@ -285,6 +288,12 @@ Public Class RemoteAppCreateClientConnection
 
         RDPfile.SaveRDPfile(RDPPath)
 
+        If Not CheckBoxSignRDPDisabled.Checked Then
+            Dim rdpSign As New RDPSign.RDPSign
+            Dim Thumbprint As String = rdpSign.GetThumbprint(CertificateComboBox.Text)
+            rdpSign.SignRDP(Thumbprint, RDPPath, CheckBoxCreateSignedAndUnsigned.Checked)
+        End If
+
     End Sub
 
     Private Function GetFlatFileTypesList(AppName As String, Optional Delim As String = ",") As String
@@ -354,4 +363,26 @@ Public Class RemoteAppCreateClientConnection
         End If
     End Sub
 
+    Private Sub CheckBoxSignRDPDisabled_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSignRDPDisabled.CheckedChanged
+        CertificateComboBox.Enabled = Not CheckBoxSignRDPDisabled.Checked
+        CheckBoxCreateSignedAndUnsigned.Enabled = Not CheckBoxSignRDPDisabled.Checked
+        If (EditAfterSave.Checked And Not CheckBoxSignRDPDisabled.Checked) Then
+            If MessageBox.Show("Cannot edit after save and sign the RDP file.  Do you want the RDP file to be signed?", "Sign RDP", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                EditAfterSave.Checked = False
+            Else
+                CheckBoxSignRDPDisabled.Checked = True
+            End If
+        End If
+    End Sub
+
+    Private Sub EditAfterSave_CheckedChanged(sender As Object, e As EventArgs) Handles EditAfterSave.CheckedChanged
+        If (EditAfterSave.Checked And Not CheckBoxSignRDPDisabled.Checked) Then
+            If MessageBox.Show("Cannot edit after save and sign the RDP file.  Do you want to edit after saving?", "Edit After Save", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                CheckBoxSignRDPDisabled.Checked = True
+            Else
+                EditAfterSave.Checked = False
+            End If
+        End If
+
+    End Sub
 End Class

@@ -151,7 +151,7 @@ Partial Class RemoteAppEditWindow
         Me.Label11.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.Label11.Location = New System.Drawing.Point(243, 103)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(64, 15)
+        Me.Label11.Size = New System.Drawing.Size(65, 15)
         Me.Label11.TabIndex = 13
         Me.Label11.Text = "Icon Index:"
         '
@@ -160,7 +160,7 @@ Partial Class RemoteAppEditWindow
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(232, 160)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(83, 15)
+        Me.Label10.Size = New System.Drawing.Size(82, 15)
         Me.Label10.TabIndex = 21
         Me.Label10.Text = "TSWebAccess:"
         '
