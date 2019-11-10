@@ -12,6 +12,8 @@ Public Class RemoteAppCreateClientConnection
         Dim RemoteAppShortName = RemoteApp.Name
         Me.Text = "Create Client Connection for " & RemoteAppShortName
 
+        CertificateComboBox.Items.AddRange(rdpSign.GetCertificateFriendlyName)
+
         SetCCWindowSettings()
 
         If Me.ServerAddress.Text = "" Then Me.ServerAddress.Text = System.Net.Dns.GetHostName
@@ -32,10 +34,14 @@ Public Class RemoteAppCreateClientConnection
             MSIRadioButton.Text = "MSI installer (requires WiX Toolset)"
         End If
 
+        If Not My.Computer.FileSystem.FileExists(GetSysDir() & "\rdpsign.exe") Then
+            GroupBoxSignRDP.Enabled = False
+            GroupBoxSignRDP.Text += " (requires rdpsign.exe)"
+            GroupBoxSignRDP.Tag = "noexe"
+        End If
+
         If Not RemoteApp.FileTypeAssociations Is Nothing Then _
         FTACountLabel.Text = "Count: " & RemoteApp.FileTypeAssociations.Count
-
-        CertificateComboBox.Items.AddRange(rdpSign.GetCertificateFriendlyName)
 
         Me.RDPRadioButton.Focus()
         HelpSystem.SetupTips(Me)
@@ -62,6 +68,9 @@ Public Class RemoteAppCreateClientConnection
         My.Settings.SavedCreateRAWebIcon = False
         My.Settings.SavedMSIPerUser = False
         My.Settings.SavedDisableFTA = False
+        My.Settings.SavedSignRDP = False
+        My.Settings.SavedSignedAndUnsigned = False
+        My.Settings.SavedCertSelected = 0
     End Sub
 
     Sub SaveCCWindowSettings()
@@ -81,6 +90,9 @@ Public Class RemoteAppCreateClientConnection
         My.Settings.SavedCreateRAWebIcon = CreateRAWebIcon.Checked
         My.Settings.SavedMSIPerUser = PerUserRadioButton.Checked
         My.Settings.SavedDisableFTA = DisabledFTACheckBox.Checked
+        My.Settings.SavedSignRDP = CheckBoxSignRDPEnabled.Checked
+        My.Settings.SavedSignedAndUnsigned = CheckBoxCreateSignedAndUnsigned.Checked
+        My.Settings.SavedCertSelected = CertificateComboBox.SelectedIndex
     End Sub
 
     Sub SetCCWindowSettings()
@@ -119,6 +131,20 @@ Public Class RemoteAppCreateClientConnection
             PerMachineRadioButton.Checked = False
             PerUserRadioButton.Checked = True
         End If
+
+        CheckBoxSignRDPEnabled.Checked = My.Settings.SavedSignRDP
+        CertificateComboBox.Enabled = My.Settings.SavedSignRDP
+        CheckBoxCreateSignedAndUnsigned.Checked = My.Settings.SavedSignedAndUnsigned
+
+        If CertificateComboBox.Items.Count >= (My.Settings.SavedCertSelected + 1) Then
+            CertificateComboBox.SelectedIndex() = My.Settings.SavedCertSelected
+        ElseIf CertificateComboBox.Items.Count > 0 Then
+            CertificateComboBox.SelectedIndex() = 0
+        ElseIf Not GroupBoxSignRDP.Tag = "noexe" Then
+            GroupBoxSignRDP.Text += " (No certificates found)"
+            GroupBoxSignRDP.Enabled = False
+        End If
+
     End Sub
 
     Private Sub UseRDGatewayCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles UseRDGatewayCheckBox.CheckedChanged
@@ -140,8 +166,11 @@ Public Class RemoteAppCreateClientConnection
 
         If RDPRadioButton.Checked Then
             CreateButton.ImageIndex = 6
+            CheckBoxCreateSignedAndUnsigned.Enabled = True
         Else
             CreateButton.ImageIndex = 1
+            CheckBoxCreateSignedAndUnsigned.Enabled = False
+            CheckBoxCreateSignedAndUnsigned.Checked = False
         End If
     End Sub
 
@@ -150,15 +179,20 @@ Public Class RemoteAppCreateClientConnection
         Dim MSIPath = ""
         Dim TempMSIPath = ""
 
+        If CheckBoxSignRDPEnabled.Checked And CertificateComboBox.SelectedItem = "" Then
+            MessageBox.Show("You must select a certificate to sign the RDP file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
         If DisabledFTACheckBox.Checked And Not RemoteApp.FileTypeAssociations Is Nothing Then RemoteApp.FileTypeAssociations.Clear()
 
         If RDPRadioButton.Checked Then
             FileSaveRDP.FileName = RemoteApp.Name
-            If Not FileSaveRDP.ShowDialog() = Windows.Forms.DialogResult.OK Then Exit Sub
+            If Not FileSaveRDP.ShowDialog() = Windows.Forms.DialogResult.OK Then Return
             RDPPath = FileSaveRDP.FileName
         Else
             FileSaveMSI.FileName = RemoteApp.Name
-            If Not FileSaveMSI.ShowDialog() = Windows.Forms.DialogResult.OK Then Exit Sub
+            If Not FileSaveMSI.ShowDialog() = Windows.Forms.DialogResult.OK Then Return
             MSIPath = FileSaveMSI.FileName
             RDPPath = Environment.GetEnvironmentVariable("TEMP") & "\" & RemoteApp.Name & ".rdp"
             TempMSIPath = Environment.GetEnvironmentVariable("TEMP") & "\" & RemoteApp.Name & ".msi"
@@ -189,6 +223,7 @@ Public Class RemoteAppCreateClientConnection
                     ExtractFTIcon(ProductFileName, FTA)
                 Next
             End If
+            Me.Close()
         Else
             '!!!!!!!  If it's an MSI
             Dim RDP As New RDP2MSIlib.RDP
@@ -225,9 +260,8 @@ Public Class RemoteAppCreateClientConnection
             RDP.CreateMSI(MSIPath)
 
             DeleteFiles(FilesToDelete)
-
+            Me.Close()
         End If
-        Me.Close()
     End Sub
 
     Private Sub ExtractFTIcon(ProductFileName As String, FTA As RemoteAppLib.FileTypeAssociation)
@@ -288,7 +322,7 @@ Public Class RemoteAppCreateClientConnection
 
         RDPfile.SaveRDPfile(RDPPath)
 
-        If Not CheckBoxSignRDPDisabled.Checked Then
+        If CheckBoxSignRDPEnabled.Checked Then
             Dim rdpSign As New RDPSign.RDPSign
             Dim Thumbprint As String = rdpSign.GetThumbprint(CertificateComboBox.Text)
             rdpSign.SignRDP(Thumbprint, RDPPath, CheckBoxCreateSignedAndUnsigned.Checked)
@@ -315,7 +349,7 @@ Public Class RemoteAppCreateClientConnection
     End Function
 
     Private Sub FTAButton_Click(sender As Object, e As EventArgs) Handles FTAButton.Click
-        MessageBox.Show(Me, "Changes made here to File Type Associations are for this client connection only and will not be saved for next time." & vbCrLf & vbCrLf & _
+        MessageBox.Show(Me, "Changes made here to File Type Associations are for this client connection only and will not be saved for next time." & vbCrLf & vbCrLf &
                "To make permanent changes to the File Type Associations for this RemoteApp, edit the RemoteApp.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RemoteApp = RemoteAppFileTypeAssociation.EditFileTypes(RemoteApp)
         If Not RemoteApp.FileTypeAssociations Is Nothing Then _
@@ -363,26 +397,31 @@ Public Class RemoteAppCreateClientConnection
         End If
     End Sub
 
-    Private Sub CheckBoxSignRDPDisabled_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSignRDPDisabled.CheckedChanged
-        CertificateComboBox.Enabled = Not CheckBoxSignRDPDisabled.Checked
-        CheckBoxCreateSignedAndUnsigned.Enabled = Not CheckBoxSignRDPDisabled.Checked
-        If (EditAfterSave.Checked And Not CheckBoxSignRDPDisabled.Checked) Then
-            If MessageBox.Show("Cannot edit after save and sign the RDP file.  Do you want the RDP file to be signed?", "Sign RDP", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                EditAfterSave.Checked = False
+    Private Sub CheckBoxSignRDPEnabled_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSignRDPEnabled.CheckedChanged
+        CertificateComboBox.Enabled = CheckBoxSignRDPEnabled.Checked
+        If (EditAfterSave.Checked And CheckBoxSignRDPEnabled.Checked) Then
+            If MessageBox.Show("You have selected ""Sign RDP file"" and ""Manually edit RDP file""." & vbCrLf & vbCrLf & "If you save any changes to a signed RDP file it will stop working." & vbCrLf & vbCrLf & "Are you sure you want the RDP file to be signed?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                CheckBoxSignRDPEnabled.Checked = True
             Else
-                CheckBoxSignRDPDisabled.Checked = True
+                CheckBoxSignRDPEnabled.Checked = False
             End If
         End If
     End Sub
 
     Private Sub EditAfterSave_CheckedChanged(sender As Object, e As EventArgs) Handles EditAfterSave.CheckedChanged
-        If (EditAfterSave.Checked And Not CheckBoxSignRDPDisabled.Checked) Then
-            If MessageBox.Show("Cannot edit after save and sign the RDP file.  Do you want to edit after saving?", "Edit After Save", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                CheckBoxSignRDPDisabled.Checked = True
+        If (EditAfterSave.Checked And CheckBoxSignRDPEnabled.Checked) Then
+            If MessageBox.Show("You have selected ""Sign RDP file"" and ""Manually edit RDP file""." & vbCrLf & vbCrLf & "If you save any changes to a signed RDP file it will stop working." & vbCrLf & vbCrLf & "Are you sure you want to edit after saving?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                EditAfterSave.Checked = True
             Else
                 EditAfterSave.Checked = False
             End If
         End If
 
+    End Sub
+
+    Private Sub CheckBoxCreateSignedAndUnsigned_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCreateSignedAndUnsigned.CheckedChanged
+        If CheckBoxCreateSignedAndUnsigned.Checked = True Then
+            CheckBoxSignRDPEnabled.Checked = True
+        End If
     End Sub
 End Class

@@ -1,6 +1,9 @@
-﻿Public Class RDPSign
+﻿Imports System.Windows.Forms
+
+Public Class RDPSign
     Public ErrorNumber As Integer = 0
     Public ErrorString As String = ""
+
     Sub main()
 
     End Sub
@@ -101,25 +104,37 @@
         End If
 
         'If we get here, we should be good to run the command to sign the RDP file.
-        Dim Command As String = "C:\Windows\System32\rdpsign.exe"
-        Dim Arguments As String
-        Dim FileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Command)
-        ' On my windows 10 computer, the argument is /sha256 instead of /sha1.  /sha1 doesn't work.
-        ' On my windows 10 computer, the Product parts come in at 10.0.18362.1
-        ' On a Windows Server 2008 R2 server I have access to, the argument is /sha1.
-        ' On a Windows Server 2008 R2 server I have access to, the Product parts come in at 6.1.7601.17514 which is lower than the windows 10 ones.
-        ' I do not have other versions of windows to test, so will need external testing for this.
-        ' Not sure where the version number switches over, but also not sure how to determine which method to use otherwise
-        If (FileVersionInfo.ProductMajorPart >= 10) Then
-            Arguments = " /sha256 " & Thumbprint & " """ & RDPFileLocation & """"
+        Dim Command As String = GetSysDir() & "\rdpsign.exe"
+        If My.Computer.FileSystem.FileExists(Command) Then
+            Dim Arguments As String
+            Dim FileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Command)
+            ' On my windows 10 computer, the argument is /sha256 instead of /sha1.  /sha1 doesn't work.
+            ' On my windows 10 computer, the Product parts come in at 10.0.18362.1
+            ' On a Windows Server 2008 R2 server I have access to, the argument is /sha1.
+            ' On a Windows Server 2008 R2 server I have access to, the Product parts come in at 6.1.7601.17514 which is lower than the windows 10 ones.
+            ' I do not have other versions of windows to test, so will need external testing for this.
+            ' Not sure where the version number switches over, but also not sure how to determine which method to use otherwise
+            If (FileVersionInfo.ProductMajorPart >= 10) Then
+                Arguments = " /sha256 " & Thumbprint & " """ & RDPFileLocation & """"
 
+            Else
+                Arguments = " /sha1 " & Thumbprint & " """ & RDPFileLocation & """"
+            End If
+            Dim StartInfo As New ProcessStartInfo
+            StartInfo.FileName = Command
+            StartInfo.Arguments = Arguments
+            StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+            Process.Start(StartInfo)
         Else
-            Arguments = " /sha1 " & Thumbprint & " """ & RDPFileLocation & """"
+            MessageBox.Show("RDPSign executable not found:" & vbNewLine & vbNewLine & Command, My.Application.Info.AssemblyName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
-        Dim StartInfo As New ProcessStartInfo
-        StartInfo.FileName = Command
-        StartInfo.Arguments = Arguments
-        StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-        Process.Start(StartInfo)
+
     End Sub
+
+    Declare Function GetSystemDirectory Lib "kernel32" Alias "GetSystemDirectoryA" (ByVal lpBuffer As String, ByVal nSize As Long) As Long
+
+    Function GetSysDir() As String
+        Return Environment.SystemDirectory.ToString
+    End Function
+
 End Class
