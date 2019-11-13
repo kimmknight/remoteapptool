@@ -38,6 +38,9 @@ Public Class RemoteAppCreateClientConnection
             GroupBoxSignRDP.Enabled = False
             GroupBoxSignRDP.Text += " (requires rdpsign.exe)"
             GroupBoxSignRDP.Tag = "noexe"
+            CheckBoxSignRDPEnabled.Checked = False
+            CheckBoxCreateSignedAndUnsigned.Checked = False
+            CertificateComboBox.Text = ""
         End If
 
         If Not RemoteApp.FileTypeAssociations Is Nothing Then _
@@ -143,6 +146,9 @@ Public Class RemoteAppCreateClientConnection
         ElseIf Not GroupBoxSignRDP.Tag = "noexe" Then
             GroupBoxSignRDP.Text += " (No certificates found)"
             GroupBoxSignRDP.Enabled = False
+            CheckBoxSignRDPEnabled.Checked = False
+            CheckBoxCreateSignedAndUnsigned.Checked = False
+            CertificateComboBox.Text = ""
         End If
 
     End Sub
