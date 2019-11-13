@@ -100,11 +100,27 @@ Public Class RDPSign
         End If
         If CreateBackup Then
             Dim BackupFile = System.IO.Path.GetDirectoryName(RDPFileLocation) & "\" & System.IO.Path.GetFileNameWithoutExtension(RDPFileLocation) & "-Unsigned.rdp"
-            System.IO.File.Copy(RDPFileLocation, BackupFile, True) 'backup file with overwrite
+            Dim LockCheck As New LockChecker.LockChecker()
+            Dim FileLocked As String
+            Dim SkipFile As Boolean = False
+            FileLocked = LockCheck.CheckLock(BackupFile)
+            While Not (FileLocked = "No locks")
+                If (MessageBox.Show("The file " + BackupFile + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                    FileLocked = LockCheck.CheckLock(BackupFile)
+                Else
+                    MessageBox.Show("The following file will not be copied:" + vbNewLine + BackupFile)
+                    SkipFile = True
+                    FileLocked = "No locks"
+                End If
+            End While
+            If Not (SkipFile) Then
+                System.IO.File.Copy(RDPFileLocation, BackupFile, True) 'backup file with overwrite
+            End If
+
         End If
 
-        'If we get here, we should be good to run the command to sign the RDP file.
-        Dim Command As String = GetSysDir() & "\rdpsign.exe"
+            'If we get here, we should be good to run the command to sign the RDP file.
+            Dim Command As String = GetSysDir() & "\rdpsign.exe"
         If My.Computer.FileSystem.FileExists(Command) Then
             Dim Arguments As String
             Dim FileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Command)

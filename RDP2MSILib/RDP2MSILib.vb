@@ -1,5 +1,5 @@
 ﻿Imports System.Reflection.Assembly
-
+Imports System.Windows.Forms
 Public Class RDP
 
     Private rdpFilePath As String
@@ -67,16 +67,45 @@ Public Class RDP
 
         'Define temp files to delete
         Dim FilesToDelete As List(Of String) = New List(Of String)(New String() {wxsPath, wixobjPath, wixpdbPath})
-
+        Dim LockCheck As New LockChecker.LockChecker()
+        Dim FileLocked As String
+        Dim SkipFile As Boolean = False
         'Check if rdp file is already in TEMP folder
         If rdpParentFolder = TempPath Then rdpInTemp = True
 
         'if RDP file not in temp, copy to temp
         If Not rdpInTemp Then
-            My.Computer.FileSystem.CopyFile(rdpFilePath, rdpTempPath, True)
+            FileLocked = LockCheck.CheckLock(rdpTempPath)
+            While Not (FileLocked = "No locks")
+                If (MessageBox.Show("The file " + rdpTempPath + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                    FileLocked = LockCheck.CheckLock(rdpTempPath)
+                Else
+                    MessageBox.Show("The following file will not be deleted:" + vbNewLine + rdpTempPath)
+                    SkipFile = True
+                    FileLocked = "No locks"
+                End If
+            End While
+            If Not (SkipFile) Then
+                My.Computer.FileSystem.CopyFile(rdpFilePath, rdpTempPath, True)
+            End If
+
             FilesToDelete.Add(rdpTempPath)
             If hasIcon Then
-                My.Computer.FileSystem.CopyFile(IconFilePath, icoTempPath, True)
+                FileLocked = LockCheck.CheckLock(icoTempPath)
+                While Not (FileLocked = "No locks")
+                    If (MessageBox.Show("The file " + icoTempPath + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                        FileLocked = LockCheck.CheckLock(icoTempPath)
+                    Else
+                        MessageBox.Show("The following file will not be deleted:" + vbNewLine + icoTempPath)
+                        SkipFile = True
+                        FileLocked = "No locks"
+                    End If
+                End While
+                If Not (SkipFile) Then
+
+                    My.Computer.FileSystem.CopyFile(IconFilePath, icoTempPath, True)
+                End If
+
                 FilesToDelete.Add(icoTempPath)
             End If
 
@@ -95,7 +124,21 @@ Public Class RDP
         'If Not LightExitCode = 0 Then Exit Sub
 
         'Move MSI file to destination and delete temp files
-        My.Computer.FileSystem.MoveFile(msiPath, DestinationPath, True)
+        FileLocked = LockCheck.CheckLock(DestinationPath)
+        While Not (FileLocked = "No locks")
+            If (MessageBox.Show("The file " + DestinationPath + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                FileLocked = LockCheck.CheckLock(DestinationPath)
+            Else
+                MessageBox.Show("The following file will not be deleted:" + vbNewLine + DestinationPath)
+                SkipFile = True
+                FileLocked = "No locks"
+            End If
+        End While
+        If Not (SkipFile) Then
+
+            My.Computer.FileSystem.MoveFile(msiPath, DestinationPath, True)
+        End If
+
         DeleteFiles(FilesToDelete)
 
     End Sub
@@ -122,7 +165,22 @@ Public Class RDP
 
     Private Sub DeleteFiles(FilesArray As List(Of String))
         For Each dFile In FilesArray
-            If My.Computer.FileSystem.FileExists(dFile) Then My.Computer.FileSystem.DeleteFile(dFile)
+            Dim LockCheck As New LockChecker.LockChecker()
+            Dim FileLocked As String
+            Dim SkipFile As Boolean = False
+            FileLocked = LockCheck.CheckLock(dFile)
+            While Not (FileLocked = "No locks")
+                If (MessageBox.Show("The file " + dFile + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                    FileLocked = LockCheck.CheckLock(dFile)
+                Else
+                    MessageBox.Show("The following file will not be deleted:" + vbNewLine + dFile)
+                    SkipFile = True
+                    FileLocked = "No locks"
+                End If
+            End While
+            If Not (SkipFile) Then
+                If My.Computer.FileSystem.FileExists(dFile) Then My.Computer.FileSystem.DeleteFile(dFile)
+            End If
         Next
     End Sub
 

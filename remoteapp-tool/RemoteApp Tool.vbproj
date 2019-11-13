@@ -268,9 +268,17 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LockChecker\LockChecker.vbproj">
+      <Project>{029c010d-728b-4b87-b54a-08b2bbf49bd7}</Project>
+      <Name>LockChecker</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RDP2MSILib\RDP2MSILib.vbproj">
       <Project>{e1cb5f9c-230f-4967-8f19-335f8e4a4906}</Project>
       <Name>RDP2MSILib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RDP2MSI\RDP2MSI.vbproj">
+      <Project>{1001a958-40db-4444-9cd7-09d1188072d1}</Project>
+      <Name>RDP2MSI</Name>
     </ProjectReference>
     <ProjectReference Include="..\RDPFileLib\RDPFileLib.vbproj">
       <Project>{258307d5-a407-4622-bf1a-bdca8e3d2faa}</Project>

@@ -1,4 +1,7 @@
-﻿Public Class RDPFile
+﻿Imports System.Windows.Forms
+Imports LockChecker
+
+Public Class RDPFile
     Public administrative_session As Integer = 0
     Public allow_desktop_composition As Integer = 0
     Public allow_font_smoothing As Integer = 0
@@ -76,7 +79,23 @@
     Public winposstr As String = "0,3,0,0,800,600"
 
     Public Sub SaveRDPfile(FilePath As String, Optional SaveDefaultSettings As Boolean = False)
-        My.Computer.FileSystem.WriteAllText(FilePath, GetRDPstring(SaveDefaultSettings), False)
+        Dim LockCheck As New LockChecker.LockChecker()
+        Dim FileLocked As String
+        Dim SkipFile As Boolean = False
+        FileLocked = LockCheck.CheckLock(FilePath)
+        While Not (FileLocked = "No locks")
+            If (MessageBox.Show("The file " + FilePath + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                FileLocked = LockCheck.CheckLock(FilePath)
+            Else
+                MessageBox.Show("The following file will not be copied:" + vbNewLine + FilePath)
+                SkipFile = True
+                FileLocked = "No locks"
+            End If
+        End While
+        If Not (SkipFile) Then
+
+            My.Computer.FileSystem.WriteAllText(FilePath, GetRDPstring(SaveDefaultSettings), False)
+        End If
     End Sub
 
     Public Function GetRDPstring(Optional SaveDefaultSettings As Boolean = False)

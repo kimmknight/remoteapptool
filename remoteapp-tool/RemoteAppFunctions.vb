@@ -1,5 +1,4 @@
 ﻿Imports System.Text.RegularExpressions
-Imports RemoteAppLib
 
 Module RemoteAppFunction
 
@@ -99,7 +98,23 @@ Module RemoteAppFunction
 
     Public Sub DeleteFiles(FilesArray As ArrayList)
         For Each dFile In FilesArray
-            If My.Computer.FileSystem.FileExists(dFile) Then My.Computer.FileSystem.DeleteFile(dFile)
+            Dim LockCheck As New LockChecker.LockChecker()
+            Dim FileLocked As String
+            Dim SkipFile As Boolean = False
+            FileLocked = LockCheck.CheckLock(dFile)
+            While Not (FileLocked = "No locks")
+                If (MessageBox.Show("The file " + dFile + " is currently locked.  Lock information:" + FileLocked + vbNewLine + "Do you want to try again?", "File Locked", MessageBoxButtons.YesNo) = DialogResult.Yes) Then
+                    FileLocked = LockCheck.CheckLock(dFile)
+                Else
+                    MessageBox.Show("The following file will not be deleted:" + vbNewLine + dFile)
+                    SkipFile = True
+                    FileLocked = "No locks"
+                End If
+            End While
+            If Not (SkipFile) Then
+                If My.Computer.FileSystem.FileExists(dFile) Then My.Computer.FileSystem.DeleteFile(dFile)
+            End If
+
         Next
     End Sub
 
