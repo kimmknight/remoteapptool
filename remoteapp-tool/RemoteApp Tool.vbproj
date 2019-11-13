@@ -276,6 +276,10 @@
       <Project>{258307d5-a407-4622-bf1a-bdca8e3d2faa}</Project>
       <Name>RDPFileLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RDPSign\RDPSign.vbproj">
+      <Project>{57dabb69-b1d3-445f-91e7-b0412abac218}</Project>
+      <Name>RDPSign</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RemoteAppLib\RemoteAppLib.vbproj">
       <Project>{785b6808-b2fe-4c18-9d63-6dab46482374}</Project>
       <Name>RemoteAppLib</Name>

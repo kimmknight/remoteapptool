@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RemoteApp Tool", "RemoteApp Tool.vbproj", "{2D140FE4-0794-43AC-BE7B-9D918B3F9C61}"
 	ProjectSection(ProjectDependencies) = postProject
 		{785B6808-B2FE-4C18-9D63-6DAB46482374} = {785B6808-B2FE-4C18-9D63-6DAB46482374}
+		{57DABB69-B1D3-445F-91E7-B0412ABAC218} = {57DABB69-B1D3-445F-91E7-B0412ABAC218}
 		{E1CB5F9C-230F-4967-8F19-335F8E4A4906} = {E1CB5F9C-230F-4967-8F19-335F8E4A4906}
 		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA} = {258307D5-A407-4622-BF1A-BDCA8E3D2FAA}
 	EndProjectSection
@@ -18,6 +21,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RDP2MSI", "..\RDP2MSI\RDP2M
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RDPFileLib", "..\RDPFileLib\RDPFileLib.vbproj", "{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RDPSign", "..\RDPSign\RDPSign.vbproj", "{57DABB69-B1D3-445F-91E7-B0412ABAC218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +50,15 @@ Global
 		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{258307D5-A407-4622-BF1A-BDCA8E3D2FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57DABB69-B1D3-445F-91E7-B0412ABAC218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57DABB69-B1D3-445F-91E7-B0412ABAC218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57DABB69-B1D3-445F-91E7-B0412ABAC218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57DABB69-B1D3-445F-91E7-B0412ABAC218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A28F1460-A9C1-44A4-A7C9-D8C210745F31}
 	EndGlobalSection
 EndGlobal
