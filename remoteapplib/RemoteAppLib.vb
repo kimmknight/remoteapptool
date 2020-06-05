@@ -1,6 +1,5 @@
-﻿Imports System.Reflection.Assembly
+﻿Public Class RemoteAppCollection
 
-Public Class RemoteAppCollection
     Inherits System.Collections.CollectionBase
 
     Public Sub Add(RemoteApp As RemoteApp)
