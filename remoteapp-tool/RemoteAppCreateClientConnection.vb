@@ -224,10 +224,13 @@ Public Class RemoteAppCreateClientConnection
                 If ExtractToIco(RemoteApp.IconPath, RemoteApp.IconIndex, IconFilePath) = False Then
                     MessageBox.Show("Icon could not be created the RemoteApp. RDP file will still be created.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
-                For Each FTA As RemoteAppLib.FileTypeAssociation In RemoteApp.FileTypeAssociations
-                    Dim ProductFileName = VB.Left(RDPPath, RDPPath.Length - 4)
-                    ExtractFTIcon(ProductFileName, FTA)
-                Next
+                ' Check if there are file type associations before trying to work with the file type association icons
+                If Not (RemoteApp.FileTypeAssociations Is Nothing) Then
+                    For Each FTA As RemoteAppLib.FileTypeAssociation In RemoteApp.FileTypeAssociations
+                        Dim ProductFileName = VB.Left(RDPPath, RDPPath.Length - 4)
+                        ExtractFTIcon(ProductFileName, FTA)
+                    Next
+                End If
             End If
             Me.Close()
         Else
