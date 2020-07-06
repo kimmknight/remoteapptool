@@ -44,13 +44,3 @@ If you have questions, comments or suggestions about RemoteApp Tool, please visi
 ![Screenshot 3](https://raw.githubusercontent.com/wiki/kimmknight/remoteapptool/images/screenshots/ss3.png)
 
 ![Screenshot 4](https://raw.githubusercontent.com/wiki/kimmknight/remoteapptool/images/screenshots/ss4.png)
-
-## Remarks
-
-The project was made open-source on 29/9/2019.
-
-I started this project in 2011 as an inexperienced developer playing with VB.NET. Over the years I have changed and improved the functionality, but the code remains awful.
-
-I no longer have time to make regular updates, so please take it and improve upon it if you have the time and motivation.
-
--Kim
