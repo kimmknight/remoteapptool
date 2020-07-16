@@ -49,9 +49,7 @@ Public Class RemoteAppEditWindow
 
         toolTip1.SetToolTip(Me.BrowseIconPath, "Select an icon")
         toolTip1.SetToolTip(Me.BrowsePath, "Browse for application")
-        toolTip1.SetToolTip(Me.BrowseVPath, "Browse for application")
-        toolTip1.SetToolTip(Me.VPathCopyButton, "Copy Path into VPath")
-        toolTip1.SetToolTip(Me.IconPathCopyButton, "Copy Path into Icon path")
+        toolTip1.SetToolTip(Me.IconResetButton, "Reset icon to application default")
     End Sub
 
     Sub LoadValues()
@@ -61,7 +59,6 @@ Public Class RemoteAppEditWindow
 
         Me.FullNameText.Text = RemoteApp.FullName
         Me.PathText.Text = RemoteApp.Path
-        Me.VPathText.Text = RemoteApp.VPath
         Me.CommandLineText.Text = RemoteApp.CommandLine
         Me.CommandLineOptionCombo.SelectedIndex = RemoteApp.CommandLineOption
         Me.IconPathText.Text = RemoteApp.IconPath
@@ -82,17 +79,9 @@ Public Class RemoteAppEditWindow
         Me.Close()
     End Sub
 
-    Private Sub VPathCopyButton_Click(sender As Object, e As EventArgs) Handles VPathCopyButton.Click
-        Me.VPathText.Text = Me.PathText.Text
-    End Sub
-
-    Private Sub IconPathCopyButton_Click(sender As Object, e As EventArgs) Handles IconPathCopyButton.Click
+    Private Sub IconResetButton_Click(sender As Object, e As EventArgs) Handles IconResetButton.Click
         Me.IconPathText.Text = Me.PathText.Text
-    End Sub
-
-    Private Sub BrowseVPath_Click(sender As Object, e As EventArgs) Handles BrowseVPath.Click
-        If My.Computer.FileSystem.FileExists(VPathText.Text) Then FileBrowserVPath.InitialDirectory = My.Computer.FileSystem.GetParentPath(VPathText.Text)
-        If FileBrowserVPath.ShowDialog() = Windows.Forms.DialogResult.OK Then Me.VPathText.Text = FileBrowserVPath.FileName
+        Me.IconIndexText.Text = 0
     End Sub
 
     Private Sub BrowseIconPath_Click(sender As Object, e As EventArgs) Handles BrowseIconPath.Click
@@ -123,7 +112,6 @@ Public Class RemoteAppEditWindow
             Dim FilePath = FileBrowserPath.FileName
             Me.PathText.Text = FilePath
             RemoteApp.Path = FilePath
-            If Me.VPathText.Text = "" Then RemoteApp.VPath = FilePath
             If Me.IconPathText.Text = "" Then RemoteApp.IconPath = FilePath
             If FilePath.ToLower.EndsWith(".exe") Then
                 Dim title = GetEXETitle(FilePath)
@@ -191,7 +179,7 @@ Public Class RemoteAppEditWindow
             MessageBox.Show("A RemoteApp with the same name already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             Me.ShowDialog()
         Else
-            SaveRemoteApp(Me.ShortNameText.Text.Trim, Me.FullNameText.Text, Me.PathText.Text, Me.VPathText.Text, Me.CommandLineText.Text, Me.CommandLineOptionCombo.SelectedIndex, Me.IconPathText.Text, Val(IconIndexText.Text), Me.TSWAbox.SelectedIndex)
+            SaveRemoteApp(Me.ShortNameText.Text.Trim, Me.FullNameText.Text, Me.PathText.Text, Me.PathText.Text, Me.CommandLineText.Text, Me.CommandLineOptionCombo.SelectedIndex, Me.IconPathText.Text, Val(IconIndexText.Text), Me.TSWAbox.SelectedIndex)
             Me.Close()
         End If
     End Sub
@@ -208,7 +196,7 @@ Public Class RemoteAppEditWindow
         ElseIf Me.Text = "New RemoteApp" And DoesAppExist(Me.ShortNameText.Text) Then
             MessageBox.Show("A RemoteApp with the same name already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         Else
-            SaveRemoteApp(Me.ShortNameText.Text.Trim, Me.FullNameText.Text, Me.PathText.Text, Me.VPathText.Text, Me.CommandLineText.Text, Me.CommandLineOptionCombo.SelectedIndex, Me.IconPathText.Text, Val(IconIndexText.Text), Me.TSWAbox.SelectedIndex)
+            SaveRemoteApp(Me.ShortNameText.Text.Trim, Me.FullNameText.Text, Me.PathText.Text, Me.PathText.Text, Me.CommandLineText.Text, Me.CommandLineOptionCombo.SelectedIndex, Me.IconPathText.Text, Val(IconIndexText.Text), Me.TSWAbox.SelectedIndex)
             Me.Close()
         End If
     End Sub
@@ -222,7 +210,6 @@ Public Class RemoteAppEditWindow
         RemoteAppFileTypeAssociation.EditFileTypes(RemoteApp)
 
     End Sub
-
 
     Private Sub ShortNameText_TextChanged(sender As Object, e As EventArgs) Handles ShortNameText.TextChanged
         ValidateAppName(Me.ShortNameText)
