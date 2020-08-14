@@ -10,18 +10,11 @@ Public Class RemoteAppAboutWindow
     End Sub
 
     Private Sub SiteLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles SiteLinkLabel.LinkClicked
-        System.Diagnostics.Process.Start("http://www.kimknight.net/remoteapptool")
+        System.Diagnostics.Process.Start(SiteLinkLabel.Text)
     End Sub
 
     Private Sub IconLibLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles IconLibLinkLabel.LinkClicked
-        System.Diagnostics.Process.Start("http://creativecommons.org/licenses/by-sa/3.0/")
+        System.Diagnostics.Process.Start(IconLibLinkLabel.Text)
     End Sub
 
-    Private Sub ralibLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-        System.Diagnostics.Process.Start("http://www.kimknight.net/")
-    End Sub
-
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-        System.Diagnostics.Process.Start("http://www.kimknight.net/")
-    End Sub
 End Class
