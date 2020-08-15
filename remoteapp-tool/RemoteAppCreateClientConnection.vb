@@ -34,7 +34,7 @@ Public Class RemoteAppCreateClientConnection
             MSIRadioButton.Text = "MSI installer (requires WiX Toolset)"
         End If
 
-        If Not My.Computer.FileSystem.FileExists(GetSysDir() & "\rdpsign.exe") Then
+        If Not My.Computer.FileSystem.FileExists(rdpSign.GetRdpsignExeLocation) Then
             GroupBoxSignRDP.Enabled = False
             GroupBoxSignRDP.Text += " (requires rdpsign.exe)"
             GroupBoxSignRDP.Tag = "noexe"

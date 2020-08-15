@@ -119,9 +119,14 @@ Public Class RDPSign
 
         End If
 
-            'If we get here, we should be good to run the command to sign the RDP file.
-            Dim Command As String = GetSysDir() & "\rdpsign.exe"
+        'If we get here, we should be good to run the command to sign the RDP file.
+
+        'Grab the rdpsign.exe location and then verify that it exists
+
+        Dim Command = GetRdpsignExeLocation()
+
         If My.Computer.FileSystem.FileExists(Command) Then
+
             Dim Arguments As String
             Dim FileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Command)
             ' On my windows 10 computer, the argument is /sha256 instead of /sha1.  /sha1 doesn't work.
@@ -146,6 +151,31 @@ Public Class RDPSign
         End If
 
     End Sub
+
+    ''' <summary>
+    ''' Find the full path to rdpsign.exe from a list of possible locations
+    ''' </summary>
+    ''' <returns>A path to rdpsign.exe or an empty string</returns>
+    Function GetRdpsignExeLocation()
+        'Each path to check for rdpsign.exe is added to this array.
+        'If it is found in more than one location, the lowest in the list will be selected.
+        Dim PossibleRdpsignPaths() As String = {
+            GetSysDir(),
+            My.Application.Info.DirectoryPath
+        }
+
+        Dim FinalRdpSignPath As String = ""
+
+        For Each RdpsignPath In PossibleRdpsignPaths
+            If My.Computer.FileSystem.FileExists(RdpsignPath & "\rdpsign.exe") Then
+                FinalRdpSignPath = RdpsignPath & "\rdpsign.exe"
+            End If
+        Next
+
+        Return FinalRdpSignPath
+
+    End Function
+
 
     Declare Function GetSystemDirectory Lib "kernel32" Alias "GetSystemDirectoryA" (ByVal lpBuffer As String, ByVal nSize As Long) As Long
 
