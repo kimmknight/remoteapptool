@@ -102,14 +102,14 @@ Module LocalFtaModule
     Public Function DoesFTAExist(fileExtension As String) As Boolean
         fileExtension = fileExtension.TrimStart(".")
         Dim FTAexists As Boolean = False
-        Dim HKCRext As String = ""
-        Try
-            HKCRext = My.Computer.Registry.ClassesRoot().OpenSubKey("." & fileExtension).ToString
+
+        If Not (My.Computer.Registry.ClassesRoot().OpenSubKey("." & fileExtension) Is Nothing) Then
             FTAexists = True
-        Catch ex As Exception
-        End Try
+        End If
+
         Return FTAexists
     End Function
+
 
     Public Function IsFTAMine(fileExtension As String) As Boolean
         fileExtension = fileExtension.TrimStart(".")
