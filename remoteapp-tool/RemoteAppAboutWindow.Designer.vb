@@ -68,9 +68,9 @@ Partial Class RemoteAppAboutWindow
         'SiteLinkLabel
         '
         Me.SiteLinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.SiteLinkLabel.Location = New System.Drawing.Point(17, 129)
+        Me.SiteLinkLabel.Location = New System.Drawing.Point(15, 129)
         Me.SiteLinkLabel.Name = "SiteLinkLabel"
-        Me.SiteLinkLabel.Size = New System.Drawing.Size(263, 30)
+        Me.SiteLinkLabel.Size = New System.Drawing.Size(271, 30)
         Me.SiteLinkLabel.TabIndex = 1
         Me.SiteLinkLabel.TabStop = True
         Me.SiteLinkLabel.Text = "https://github.com/kimmknight/remoteapptool"
@@ -100,12 +100,12 @@ Partial Class RemoteAppAboutWindow
         'IconLibLinkLabel
         '
         Me.IconLibLinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.IconLibLinkLabel.Location = New System.Drawing.Point(17, 249)
+        Me.IconLibLinkLabel.Location = New System.Drawing.Point(12, 249)
         Me.IconLibLinkLabel.Name = "IconLibLinkLabel"
-        Me.IconLibLinkLabel.Size = New System.Drawing.Size(263, 30)
+        Me.IconLibLinkLabel.Size = New System.Drawing.Size(274, 30)
         Me.IconLibLinkLabel.TabIndex = 1
         Me.IconLibLinkLabel.TabStop = True
-        Me.IconLibLinkLabel.Text = "http://creativecommons.org/licenses/by-sa/3.0/"
+        Me.IconLibLinkLabel.Text = "https://creativecommons.org/licenses/by-sa/3.0/"
         Me.IconLibLinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'IconLibLicenceTextLabel
