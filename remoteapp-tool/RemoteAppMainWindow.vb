@@ -164,4 +164,46 @@ Public Class RemoteAppMainWindow
         RemoteAppEditWindow.CreateRemoteApp(True)
         ReloadApps()
     End Sub
+
+    Private Sub RemoteAppMainWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
+        ' Check to see if this is a pre-release or debug version.
+        ' This information comes from the project assembly description
+
+        Dim AssemblyDescription = My.Application.Info.Description.ToLower
+
+        If AssemblyDescription = "pre-release" OrElse AssemblyDescription = "debug" Then
+
+            ' Ask the user if the application worked correctly
+
+            Dim ProblemYesNo = MessageBox.Show("This is a " & AssemblyDescription & " version of RemoteApp Tool." & vbCrLf & vbCrLf & "Did it work correctly?", AssemblyDescription.ToUpper & " version feedback", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            ' If the user had a problem, ask for more info.
+            ' Put the responses + version # into an array, ready to be inserted into a URL
+
+            Dim FeedbackResponses(3) As String
+            Dim VersionString = My.Application.Info.Version.ToString & " " & My.Application.Info.Description.ToString
+
+            If ProblemYesNo = DialogResult.No Then
+                'Dim FeedbackText = InputBox("Please describe the problem you experienced:", "Problem description")
+                FeedbackResponses = {VersionString, "No", ""}
+            ElseIf ProblemYesNo = DialogResult.Yes Then
+                FeedbackResponses = {VersionString, "Yes", ""}
+            End If
+
+            ' Build the Google Form URL
+
+            Dim FormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSet6jkUvj23n9IK0L_aM8ckv40BfcI9e8VTdfcDdz2XtU-ERA/viewform?usp=pp_url&entry.64442428=" &
+                FeedbackResponses(0) &
+                "&entry.1809958859=" &
+                FeedbackResponses(1) &
+                "&entry.612126075=" &
+                FeedbackResponses(2)
+
+            ' Send the user to the filled Google Form to submit
+
+            System.Diagnostics.Process.Start(FormUrl)
+
+        End If
+    End Sub
 End Class
