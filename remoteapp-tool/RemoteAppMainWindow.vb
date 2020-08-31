@@ -22,7 +22,12 @@ Public Class RemoteAppMainWindow
             End
         End Try
 
-        Me.Text = My.Application.Info.Title & " " & My.Application.Info.Version.ToString & " (" & System.Net.Dns.GetHostName & ")"
+        Dim VersionString = My.Application.Info.Version.ToString
+        If Not My.Application.Info.Description = Nothing Then
+            VersionString = My.Application.Info.Version.ToString & " " & My.Application.Info.Description.ToLower
+        End If
+
+        Me.Text = My.Application.Info.Title & " " & versionstring & " (" & System.Net.Dns.GetHostName & ")"
         If Not My.Computer.Keyboard.ShiftKeyDown Then
             If Not My.Settings.MainWindowWidth < Me.MinimumSize.Width Then Me.Width = My.Settings.MainWindowWidth
             If Not My.Settings.MainWindowHeight < Me.MinimumSize.Height Then Me.Height = My.Settings.MainWindowHeight
