@@ -1,13 +1,12 @@
 ﻿Module HelpSystem
     Public Sub SetupTips(TheForm As Windows.Forms.Form)
+        Dim toolTip1 As New ToolTip With {
+            .AutoPopDelay = 10000,
+            .InitialDelay = 500,
+            .ReshowDelay = 500
+        }
 
-        Dim toolTip1 As New ToolTip()
-
-        toolTip1.AutoPopDelay = 10000
-        toolTip1.InitialDelay = 500
-        toolTip1.ReshowDelay = 500
-
-        Dim HelpString As String = ""
+        Dim HelpString As String
 
         For Each Control As Control In TheForm.Controls
             For Each SubControl As Control In Control.Controls
@@ -56,7 +55,6 @@
 
         Return TipFile
     End Function
-
 
     Private Function GetBuiltInTips() As String
         Dim Tips As String = ""

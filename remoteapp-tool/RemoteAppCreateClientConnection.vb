@@ -284,10 +284,10 @@ Public Class RemoteAppCreateClientConnection
 
     Private Sub CreateRDPFile(RDPPath As String, RemoteApp As RemoteAppLib.RemoteApp)
 
-        Dim App As New RemoteAppLib.RemoteApp
-        App = RemoteApp
+        'Dim App As New RemoteAppLib.RemoteApp = RemoteApp
+        'App = RemoteApp
         Dim FileTypeAssociations As RemoteAppLib.FileTypeAssociationCollection
-        FileTypeAssociations = App.FileTypeAssociations
+        FileTypeAssociations = RemoteApp.FileTypeAssociations
 
         Dim ServerAddress = Me.ServerAddress.Text
         Dim AltServerAddress = Me.AltServerAddress.Text
@@ -296,17 +296,16 @@ Public Class RemoteAppCreateClientConnection
         Dim FlatFileTypes = ""
         If Not FileTypeAssociations Is Nothing Then FlatFileTypes = FileTypeAssociations.GetFlatFileTypes
 
-        Dim RDPfile As New RDPFileLib.RDPFile
-        RDPfile.full_address = ServerAddress
-        RDPfile.alternate_full_address = AltServerAddress
-        RDPfile.server_port = Val(ServerPort)
-
-        RDPfile.remoteapplicationname = App.FullName
-        RDPfile.remoteapplicationprogram = "||" & App.Name
-        RDPfile.remoteapplicationmode = 1
-        RDPfile.disableremoteappcapscheck = 1
-
-        RDPfile.alternate_shell = "rdpinit.exe"
+        Dim RDPfile As New RDPFileLib.RDPFile With {
+            .full_address = ServerAddress,
+            .alternate_full_address = AltServerAddress,
+            .server_port = Val(ServerPort),
+            .remoteapplicationname = RemoteApp.FullName,
+            .remoteapplicationprogram = "||" & RemoteApp.Name,
+            .remoteapplicationmode = 1,
+            .disableremoteappcapscheck = 1,
+            .alternate_shell = "rdpinit.exe"
+        }
 
         If UseRDGatewayCheckBox.Checked Then
             RDPfile.gatewayhostname = Me.GatewayAddress.Text
