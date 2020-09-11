@@ -175,13 +175,17 @@ Public Class RemoteAppMainWindow
         ' Check to see if this is a pre-release or debug version.
         ' This information comes from the project assembly description
 
-        Dim AssemblyDescription = My.Application.Info.Description.ToLower
+        Dim AssemblyDescription = My.Application.Info.Description
 
-        If AssemblyDescription = "pre-release" OrElse AssemblyDescription = "debug" Then
+        If Not AssemblyDescription = "" Then
 
             ' Ask the user if the application worked correctly
+            Dim ReleaseType = AssemblyDescription
+            If ReleaseType.StartsWith("rc", True, Nothing) Then
+                ReleaseType = "Release Candidate"
+            End If
 
-            Dim ProblemYesNo = MessageBox.Show("This is a " & AssemblyDescription & " version of RemoteApp Tool." & vbCrLf & vbCrLf & "Did it work correctly?", AssemblyDescription.ToUpper & " version feedback", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim ProblemYesNo = MessageBox.Show("This is a """ & ReleaseType.ToLower & """ of RemoteApp Tool." & vbCrLf & vbCrLf & "Did it work correctly?", AssemblyDescription.ToUpper & " version feedback", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             ' If the user had a problem, ask for more info.
             ' Put the responses + version # into an array, ready to be inserted into a URL
