@@ -153,7 +153,7 @@ Public Class RemoteAppMainWindow
     End Sub
 
     Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        System.Diagnostics.Process.Start("http://www.kimknight.net/remoteapptool")
+        System.Diagnostics.Process.Start("https://github.com/kimmknight/remoteapptool")
     End Sub
 
     Private Sub RemoveUnusedFileTypeAssociationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveUnusedFileTypeAssociationsToolStripMenuItem.Click
