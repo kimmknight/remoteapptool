@@ -11,6 +11,7 @@ Public Class RemoteAppCreateClientConnection
         Dim rdpSign As New RDPSign.RDPSign
         Dim RemoteAppShortName = RemoteApp.Name
         Me.Text = "Create Client Connection for " & RemoteAppShortName
+        Me.RdpsignErrorLabel.Text = ""
 
         CertificateComboBox.Items.AddRange(rdpSign.GetCertificateFriendlyName)
 
@@ -35,9 +36,9 @@ Public Class RemoteAppCreateClientConnection
         End If
 
         If Not My.Computer.FileSystem.FileExists(rdpSign.GetRdpsignExeLocation) Then
-            GroupBoxSignRDP.Enabled = False
-            GroupBoxSignRDP.Text += " (requires rdpsign.exe)"
-            GroupBoxSignRDP.Tag = "noexe"
+            SigningTabPage.Enabled = False
+            RdpsignErrorLabel.Text += " * Requires rdpsign.exe."
+            SigningTabPage.Tag = "noexe"
             CheckBoxSignRDPEnabled.Checked = False
             CheckBoxCreateSignedAndUnsigned.Checked = False
             CertificateComboBox.Text = ""
@@ -124,7 +125,7 @@ Public Class RemoteAppCreateClientConnection
         End If
         ShortcutTagCheckBox.Checked = My.Settings.SavedUseShortcutTag
         ShortcutTagTextBox.Text = My.Settings.SavedShortcutTag
-        MSIGroupBox.Enabled = MSIRadioButton.Checked
+        MSIOptionsTabPage.Enabled = MSIRadioButton.Checked
         CreateRAWebIcon.Checked = My.Settings.SavedCreateRAWebIcon
         DisabledFTACheckBox.Checked = My.Settings.SavedDisableFTA
         If My.Settings.SavedMSIPerUser = False Then
@@ -143,9 +144,9 @@ Public Class RemoteAppCreateClientConnection
             CertificateComboBox.SelectedIndex() = My.Settings.SavedCertSelected
         ElseIf CertificateComboBox.Items.Count > 0 Then
             CertificateComboBox.SelectedIndex() = 0
-        ElseIf Not GroupBoxSignRDP.Tag = "noexe" Then
-            GroupBoxSignRDP.Text += " (No certificates found)"
-            GroupBoxSignRDP.Enabled = False
+        ElseIf Not SigningTabPage.Tag = "noexe" Then
+            RdpsignErrorLabel.Text += " No certificates found."
+            SigningTabPage.Enabled = False
             CheckBoxSignRDPEnabled.Checked = False
             CheckBoxCreateSignedAndUnsigned.Checked = False
             CertificateComboBox.Text = ""
@@ -166,7 +167,7 @@ Public Class RemoteAppCreateClientConnection
     End Sub
 
     Private Sub RDPRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RDPRadioButton.CheckedChanged
-        MSIGroupBox.Enabled = MSIRadioButton.Checked
+        MSIOptionsTabPage.Enabled = MSIRadioButton.Checked
         EditAfterSave.Enabled = RDPRadioButton.Checked
         CreateRAWebIcon.Enabled = RDPRadioButton.Checked
 
@@ -284,10 +285,10 @@ Public Class RemoteAppCreateClientConnection
 
     Private Sub CreateRDPFile(RDPPath As String, RemoteApp As RemoteAppLib.RemoteApp)
 
-        Dim App As New RemoteAppLib.RemoteApp
-        App = RemoteApp
+        'Dim App As New RemoteAppLib.RemoteApp = RemoteApp
+        'App = RemoteApp
         Dim FileTypeAssociations As RemoteAppLib.FileTypeAssociationCollection
-        FileTypeAssociations = App.FileTypeAssociations
+        FileTypeAssociations = RemoteApp.FileTypeAssociations
 
         Dim ServerAddress = Me.ServerAddress.Text
         Dim AltServerAddress = Me.AltServerAddress.Text
@@ -296,17 +297,16 @@ Public Class RemoteAppCreateClientConnection
         Dim FlatFileTypes = ""
         If Not FileTypeAssociations Is Nothing Then FlatFileTypes = FileTypeAssociations.GetFlatFileTypes
 
-        Dim RDPfile As New RDPFileLib.RDPFile
-        RDPfile.full_address = ServerAddress
-        RDPfile.alternate_full_address = AltServerAddress
-        RDPfile.server_port = Val(ServerPort)
-
-        RDPfile.remoteapplicationname = App.FullName
-        RDPfile.remoteapplicationprogram = "||" & App.Name
-        RDPfile.remoteapplicationmode = 1
-        RDPfile.disableremoteappcapscheck = 1
-
-        RDPfile.alternate_shell = "rdpinit.exe"
+        Dim RDPfile As New RDPFileLib.RDPFile With {
+            .full_address = ServerAddress,
+            .alternate_full_address = AltServerAddress,
+            .server_port = Val(ServerPort),
+            .remoteapplicationname = RemoteApp.FullName,
+            .remoteapplicationprogram = "||" & RemoteApp.Name,
+            .remoteapplicationmode = 1,
+            .disableremoteappcapscheck = 1,
+            .alternate_shell = "rdpinit.exe"
+        }
 
         If UseRDGatewayCheckBox.Checked Then
             RDPfile.gatewayhostname = Me.GatewayAddress.Text
@@ -433,4 +433,5 @@ Public Class RemoteAppCreateClientConnection
             CheckBoxSignRDPEnabled.Checked = True
         End If
     End Sub
+
 End Class
