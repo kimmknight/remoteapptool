@@ -1,13 +1,12 @@
 ﻿Module HelpSystem
     Public Sub SetupTips(TheForm As Windows.Forms.Form)
+        Dim toolTip1 As New ToolTip With {
+            .AutoPopDelay = 10000,
+            .InitialDelay = 500,
+            .ReshowDelay = 500
+        }
 
-        Dim toolTip1 As New ToolTip()
-
-        toolTip1.AutoPopDelay = 10000
-        toolTip1.InitialDelay = 500
-        toolTip1.ReshowDelay = 500
-
-        Dim HelpString As String = ""
+        Dim HelpString As String
 
         For Each Control As Control In TheForm.Controls
             For Each SubControl As Control In Control.Controls
@@ -57,7 +56,6 @@
         Return TipFile
     End Function
 
-
     Private Function GetBuiltInTips() As String
         Dim Tips As String = ""
 
@@ -70,10 +68,11 @@
         Tips += "RemoteAppEditWindow|FTAButton|Set file type associations for this RemoteApp." & vbCrLf
         Tips += "RemoteAppEditWindow|CancelEditButton|Discard changes and close." & vbCrLf
         Tips += "RemoteAppEditWindow|BrowseIconPath|Select an icon for the RemoteApp." & vbCrLf
-        Tips += "RemoteAppEditWindow|VPathCopyButton|Copy the value from the ""Path"" field into the ""VPath"" field." & vbCrLf
         Tips += "RemoteAppEditWindow|IconPathCopyButton|Copy the value from the ""Path"" field into the ""Icon path"" field. " & vbCrLf
         Tips += "RemoteAppEditWindow|BrowsePath|Browse for application." & vbCrLf
-        Tips += "RemoteAppEditWindow|BrowseVPath|Browse for application." & vbCrLf
+        Tips += "RemoteAppEditWindow|IconResetButton|Reset the icon to the default for this application." & vbCrLf
+
+        'IconResetButton
 
         Tips += "RemoteAppCreateClientConnection|RDPRadioButton|Create an RDP file." & vbCrLf
         Tips += "RemoteAppCreateClientConnection|MSIRadioButton|Create an MSI file." & vbCrLf
@@ -85,6 +84,13 @@
         Tips += "RemoteAppCreateClientConnection|ResetButton|Reset window settings to defaults." & vbCrLf
         Tips += "RemoteAppCreateClientConnection|CancelEditButton|Close and return to the main window." & vbCrLf
         Tips += "RemoteAppCreateClientConnection|CreateButton|Create the client connection and choose where to save it." & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|UseRDGatewayCheckBox|Use a Remote Desktop Gateway to connect to the host." & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|AttemptDirectCheckBox|Try a direct connection first, if that fails then use the Remote Desktop Gateway." & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|ShortcutTagCheckBox|Append some text to the end of each shortcut title." & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|PerMachineRadioButton|Should the shortcuts install for all users (per-machine), or only for the logged in user (per user)?" & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|PerUserRadioButton|Should the shortcuts install for all users (per-machine), or only for the logged in user (per user)?" & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|CheckBoxSignRDPEnabled|Digitally sign the RDP file." & vbCrLf
+        Tips += "RemoteAppCreateClientConnection|CheckBoxCreateSignedAndUnsigned|Produce both a signed and unsigned copy of the RDP file." & vbCrLf
 
         Tips += "RemoteAppFileTypeAssociation|CreateButton|Create a new File Type Association." & vbCrLf
         Tips += "RemoteAppFileTypeAssociation|DeleteButton|Delete selected File Type Association." & vbCrLf
