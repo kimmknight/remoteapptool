@@ -29,19 +29,16 @@ Partial Class RemoteAppCreateClientConnection
         Me.CreateButton = New System.Windows.Forms.Button()
         Me.FileSaveRDP = New System.Windows.Forms.SaveFileDialog()
         Me.CancelEditButton = New System.Windows.Forms.Button()
-        Me.ServerGroupBox = New System.Windows.Forms.GroupBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.ServerPort = New System.Windows.Forms.TextBox()
         Me.AltServerAddress = New System.Windows.Forms.TextBox()
         Me.ServerAddress = New System.Windows.Forms.TextBox()
-        Me.RDGWGroupBox = New System.Windows.Forms.GroupBox()
         Me.AttemptDirectCheckBox = New System.Windows.Forms.CheckBox()
         Me.UseRDGatewayCheckBox = New System.Windows.Forms.CheckBox()
         Me.RDGWLabel = New System.Windows.Forms.Label()
         Me.GatewayAddress = New System.Windows.Forms.TextBox()
-        Me.ClientConnectionGroupBox = New System.Windows.Forms.GroupBox()
         Me.MSIRadioButton = New System.Windows.Forms.RadioButton()
         Me.RDPRadioButton = New System.Windows.Forms.RadioButton()
         Me.CreateRAWebIcon = New System.Windows.Forms.CheckBox()
@@ -49,7 +46,6 @@ Partial Class RemoteAppCreateClientConnection
         Me.FileBrowserIcon = New System.Windows.Forms.OpenFileDialog()
         Me.FileSaveMSI = New System.Windows.Forms.SaveFileDialog()
         Me.ShortcutDesktopCheckBox = New System.Windows.Forms.CheckBox()
-        Me.MSIGroupBox = New System.Windows.Forms.GroupBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PerMachineRadioButton = New System.Windows.Forms.RadioButton()
         Me.PerUserRadioButton = New System.Windows.Forms.RadioButton()
@@ -64,21 +60,28 @@ Partial Class RemoteAppCreateClientConnection
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ResetButton = New System.Windows.Forms.Button()
         Me.SaveButton = New System.Windows.Forms.Button()
-        Me.FileTypesGroupBox = New System.Windows.Forms.GroupBox()
         Me.FTACountLabel = New System.Windows.Forms.Label()
         Me.DisabledFTACheckBox = New System.Windows.Forms.CheckBox()
-        Me.GroupBoxSignRDP = New System.Windows.Forms.GroupBox()
         Me.CheckBoxCreateSignedAndUnsigned = New System.Windows.Forms.CheckBox()
         Me.CertificateComboBox = New System.Windows.Forms.ComboBox()
         Me.CertificateLabel = New System.Windows.Forms.Label()
         Me.CheckBoxSignRDPEnabled = New System.Windows.Forms.CheckBox()
-        Me.ServerGroupBox.SuspendLayout()
-        Me.RDGWGroupBox.SuspendLayout()
-        Me.ClientConnectionGroupBox.SuspendLayout()
-        Me.MSIGroupBox.SuspendLayout()
+        Me.TabControl = New System.Windows.Forms.TabControl()
+        Me.HostTabPage = New System.Windows.Forms.TabPage()
+        Me.OptionsTabPage = New System.Windows.Forms.TabPage()
+        Me.GatewayTabPage = New System.Windows.Forms.TabPage()
+        Me.FileTypesTabPage = New System.Windows.Forms.TabPage()
+        Me.MSIOptionsTabPage = New System.Windows.Forms.TabPage()
+        Me.SigningTabPage = New System.Windows.Forms.TabPage()
+        Me.RdpsignErrorLabel = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
-        Me.FileTypesGroupBox.SuspendLayout()
-        Me.GroupBoxSignRDP.SuspendLayout()
+        Me.TabControl.SuspendLayout()
+        Me.HostTabPage.SuspendLayout()
+        Me.OptionsTabPage.SuspendLayout()
+        Me.GatewayTabPage.SuspendLayout()
+        Me.FileTypesTabPage.SuspendLayout()
+        Me.MSIOptionsTabPage.SuspendLayout()
+        Me.SigningTabPage.SuspendLayout()
         Me.SuspendLayout()
         '
         'EditAfterSave
@@ -89,7 +92,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.EditAfterSave.Location = New System.Drawing.Point(313, 13)
         Me.EditAfterSave.Name = "EditAfterSave"
         Me.EditAfterSave.Size = New System.Drawing.Size(165, 30)
-        Me.EditAfterSave.TabIndex = 2
+        Me.EditAfterSave.TabIndex = 3
         Me.EditAfterSave.Text = "Manually edit RDP file"
         Me.EditAfterSave.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.EditAfterSave.UseVisualStyleBackColor = False
@@ -108,13 +111,12 @@ Partial Class RemoteAppCreateClientConnection
         '
         'CreateButton
         '
-        Me.CreateButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CreateButton.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CreateButton.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.CreateButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.CreateButton.ImageIndex = 6
         Me.CreateButton.ImageList = Me.SmallerIcons
-        Me.CreateButton.Location = New System.Drawing.Point(416, 555)
+        Me.CreateButton.Location = New System.Drawing.Point(424, 158)
         Me.CreateButton.Name = "CreateButton"
         Me.CreateButton.Size = New System.Drawing.Size(80, 29)
         Me.CreateButton.TabIndex = 9
@@ -129,13 +131,12 @@ Partial Class RemoteAppCreateClientConnection
         '
         'CancelEditButton
         '
-        Me.CancelEditButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CancelEditButton.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CancelEditButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.CancelEditButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.CancelEditButton.ImageIndex = 4
         Me.CancelEditButton.ImageList = Me.SmallerIcons
-        Me.CancelEditButton.Location = New System.Drawing.Point(343, 555)
+        Me.CancelEditButton.Location = New System.Drawing.Point(351, 158)
         Me.CancelEditButton.Name = "CancelEditButton"
         Me.CancelEditButton.Size = New System.Drawing.Size(67, 29)
         Me.CancelEditButton.TabIndex = 8
@@ -143,26 +144,10 @@ Partial Class RemoteAppCreateClientConnection
         Me.CancelEditButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.CancelEditButton.UseVisualStyleBackColor = False
         '
-        'ServerGroupBox
-        '
-        Me.ServerGroupBox.Controls.Add(Me.Label13)
-        Me.ServerGroupBox.Controls.Add(Me.Label14)
-        Me.ServerGroupBox.Controls.Add(Me.Label12)
-        Me.ServerGroupBox.Controls.Add(Me.ServerPort)
-        Me.ServerGroupBox.Controls.Add(Me.AltServerAddress)
-        Me.ServerGroupBox.Controls.Add(Me.ServerAddress)
-        Me.ServerGroupBox.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ServerGroupBox.Location = New System.Drawing.Point(12, 92)
-        Me.ServerGroupBox.Name = "ServerGroupBox"
-        Me.ServerGroupBox.Size = New System.Drawing.Size(484, 87)
-        Me.ServerGroupBox.TabIndex = 1
-        Me.ServerGroupBox.TabStop = False
-        Me.ServerGroupBox.Text = "Remote Server"
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(7, 54)
+        Me.Label13.Location = New System.Drawing.Point(9, 53)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(101, 15)
         Me.Label13.TabIndex = 4
@@ -171,7 +156,7 @@ Partial Class RemoteAppCreateClientConnection
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(382, 25)
+        Me.Label14.Location = New System.Drawing.Point(376, 24)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(32, 15)
         Me.Label14.TabIndex = 2
@@ -180,7 +165,7 @@ Partial Class RemoteAppCreateClientConnection
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(7, 25)
+        Me.Label12.Location = New System.Drawing.Point(9, 24)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(85, 15)
         Me.Label12.TabIndex = 0
@@ -188,7 +173,7 @@ Partial Class RemoteAppCreateClientConnection
         '
         'ServerPort
         '
-        Me.ServerPort.Location = New System.Drawing.Point(420, 22)
+        Me.ServerPort.Location = New System.Drawing.Point(414, 21)
         Me.ServerPort.Name = "ServerPort"
         Me.ServerPort.Size = New System.Drawing.Size(53, 23)
         Me.ServerPort.TabIndex = 3
@@ -196,37 +181,23 @@ Partial Class RemoteAppCreateClientConnection
         '
         'AltServerAddress
         '
-        Me.AltServerAddress.Location = New System.Drawing.Point(121, 51)
+        Me.AltServerAddress.Location = New System.Drawing.Point(120, 50)
         Me.AltServerAddress.Name = "AltServerAddress"
-        Me.AltServerAddress.Size = New System.Drawing.Size(352, 23)
+        Me.AltServerAddress.Size = New System.Drawing.Size(347, 23)
         Me.AltServerAddress.TabIndex = 5
         '
         'ServerAddress
         '
-        Me.ServerAddress.Location = New System.Drawing.Point(121, 22)
+        Me.ServerAddress.Location = New System.Drawing.Point(120, 21)
         Me.ServerAddress.Name = "ServerAddress"
-        Me.ServerAddress.Size = New System.Drawing.Size(255, 23)
+        Me.ServerAddress.Size = New System.Drawing.Size(250, 23)
         Me.ServerAddress.TabIndex = 1
-        '
-        'RDGWGroupBox
-        '
-        Me.RDGWGroupBox.Controls.Add(Me.AttemptDirectCheckBox)
-        Me.RDGWGroupBox.Controls.Add(Me.UseRDGatewayCheckBox)
-        Me.RDGWGroupBox.Controls.Add(Me.RDGWLabel)
-        Me.RDGWGroupBox.Controls.Add(Me.GatewayAddress)
-        Me.RDGWGroupBox.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.RDGWGroupBox.Location = New System.Drawing.Point(12, 185)
-        Me.RDGWGroupBox.Name = "RDGWGroupBox"
-        Me.RDGWGroupBox.Size = New System.Drawing.Size(484, 103)
-        Me.RDGWGroupBox.TabIndex = 2
-        Me.RDGWGroupBox.TabStop = False
-        Me.RDGWGroupBox.Text = "Remote Desktop Gateway"
         '
         'AttemptDirectCheckBox
         '
         Me.AttemptDirectCheckBox.AutoSize = True
         Me.AttemptDirectCheckBox.Enabled = False
-        Me.AttemptDirectCheckBox.Location = New System.Drawing.Point(10, 76)
+        Me.AttemptDirectCheckBox.Location = New System.Drawing.Point(12, 70)
         Me.AttemptDirectCheckBox.Name = "AttemptDirectCheckBox"
         Me.AttemptDirectCheckBox.Size = New System.Drawing.Size(326, 19)
         Me.AttemptDirectCheckBox.TabIndex = 3
@@ -236,7 +207,7 @@ Partial Class RemoteAppCreateClientConnection
         'UseRDGatewayCheckBox
         '
         Me.UseRDGatewayCheckBox.AutoSize = True
-        Me.UseRDGatewayCheckBox.Location = New System.Drawing.Point(10, 22)
+        Me.UseRDGatewayCheckBox.Location = New System.Drawing.Point(12, 16)
         Me.UseRDGatewayCheckBox.Name = "UseRDGatewayCheckBox"
         Me.UseRDGatewayCheckBox.Size = New System.Drawing.Size(111, 19)
         Me.UseRDGatewayCheckBox.TabIndex = 0
@@ -247,7 +218,7 @@ Partial Class RemoteAppCreateClientConnection
         '
         Me.RDGWLabel.AutoSize = True
         Me.RDGWLabel.Enabled = False
-        Me.RDGWLabel.Location = New System.Drawing.Point(7, 50)
+        Me.RDGWLabel.Location = New System.Drawing.Point(9, 44)
         Me.RDGWLabel.Name = "RDGWLabel"
         Me.RDGWLabel.Size = New System.Drawing.Size(116, 15)
         Me.RDGWLabel.TabIndex = 1
@@ -256,32 +227,18 @@ Partial Class RemoteAppCreateClientConnection
         'GatewayAddress
         '
         Me.GatewayAddress.Enabled = False
-        Me.GatewayAddress.Location = New System.Drawing.Point(145, 47)
+        Me.GatewayAddress.Location = New System.Drawing.Point(138, 41)
         Me.GatewayAddress.Name = "GatewayAddress"
         Me.GatewayAddress.Size = New System.Drawing.Size(328, 23)
         Me.GatewayAddress.TabIndex = 2
         '
-        'ClientConnectionGroupBox
-        '
-        Me.ClientConnectionGroupBox.Controls.Add(Me.MSIRadioButton)
-        Me.ClientConnectionGroupBox.Controls.Add(Me.RDPRadioButton)
-        Me.ClientConnectionGroupBox.Controls.Add(Me.CreateRAWebIcon)
-        Me.ClientConnectionGroupBox.Controls.Add(Me.EditAfterSave)
-        Me.ClientConnectionGroupBox.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ClientConnectionGroupBox.Location = New System.Drawing.Point(12, 12)
-        Me.ClientConnectionGroupBox.Name = "ClientConnectionGroupBox"
-        Me.ClientConnectionGroupBox.Size = New System.Drawing.Size(484, 74)
-        Me.ClientConnectionGroupBox.TabIndex = 0
-        Me.ClientConnectionGroupBox.TabStop = False
-        Me.ClientConnectionGroupBox.Text = "Client Connection"
-        '
         'MSIRadioButton
         '
         Me.MSIRadioButton.AutoSize = True
-        Me.MSIRadioButton.Location = New System.Drawing.Point(10, 47)
+        Me.MSIRadioButton.Location = New System.Drawing.Point(12, 43)
         Me.MSIRadioButton.Name = "MSIRadioButton"
         Me.MSIRadioButton.Size = New System.Drawing.Size(89, 19)
-        Me.MSIRadioButton.TabIndex = 1
+        Me.MSIRadioButton.TabIndex = 2
         Me.MSIRadioButton.TabStop = True
         Me.MSIRadioButton.Text = "MSI installer"
         Me.MSIRadioButton.UseVisualStyleBackColor = True
@@ -290,10 +247,10 @@ Partial Class RemoteAppCreateClientConnection
         '
         Me.RDPRadioButton.AutoSize = True
         Me.RDPRadioButton.Checked = True
-        Me.RDPRadioButton.Location = New System.Drawing.Point(10, 22)
+        Me.RDPRadioButton.Location = New System.Drawing.Point(12, 18)
         Me.RDPRadioButton.Name = "RDPRadioButton"
         Me.RDPRadioButton.Size = New System.Drawing.Size(66, 19)
-        Me.RDPRadioButton.TabIndex = 0
+        Me.RDPRadioButton.TabIndex = 1
         Me.RDPRadioButton.TabStop = True
         Me.RDPRadioButton.Text = "RDP file"
         Me.RDPRadioButton.UseVisualStyleBackColor = True
@@ -303,10 +260,10 @@ Partial Class RemoteAppCreateClientConnection
         Me.CreateRAWebIcon.BackColor = System.Drawing.Color.Transparent
         Me.CreateRAWebIcon.ImageIndex = 5
         Me.CreateRAWebIcon.ImageList = Me.SmallerIcons
-        Me.CreateRAWebIcon.Location = New System.Drawing.Point(313, 36)
+        Me.CreateRAWebIcon.Location = New System.Drawing.Point(313, 38)
         Me.CreateRAWebIcon.Name = "CreateRAWebIcon"
         Me.CreateRAWebIcon.Size = New System.Drawing.Size(126, 30)
-        Me.CreateRAWebIcon.TabIndex = 3
+        Me.CreateRAWebIcon.TabIndex = 4
         Me.CreateRAWebIcon.Text = "Create icon files"
         Me.CreateRAWebIcon.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.CreateRAWebIcon.UseVisualStyleBackColor = False
@@ -316,7 +273,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.FTAButton.BackColor = System.Drawing.Color.WhiteSmoke
         Me.FTAButton.ImageIndex = 2
         Me.FTAButton.ImageList = Me.SmallerIcons
-        Me.FTAButton.Location = New System.Drawing.Point(301, 22)
+        Me.FTAButton.Location = New System.Drawing.Point(298, 15)
         Me.FTAButton.Name = "FTAButton"
         Me.FTAButton.Size = New System.Drawing.Size(172, 29)
         Me.FTAButton.TabIndex = 2
@@ -339,40 +296,19 @@ Partial Class RemoteAppCreateClientConnection
         Me.ShortcutDesktopCheckBox.AutoSize = True
         Me.ShortcutDesktopCheckBox.Checked = True
         Me.ShortcutDesktopCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ShortcutDesktopCheckBox.Location = New System.Drawing.Point(116, 18)
+        Me.ShortcutDesktopCheckBox.Location = New System.Drawing.Point(118, 15)
         Me.ShortcutDesktopCheckBox.Name = "ShortcutDesktopCheckBox"
         Me.ShortcutDesktopCheckBox.Size = New System.Drawing.Size(69, 19)
         Me.ShortcutDesktopCheckBox.TabIndex = 1
         Me.ShortcutDesktopCheckBox.Text = "Desktop"
         Me.ShortcutDesktopCheckBox.UseVisualStyleBackColor = True
         '
-        'MSIGroupBox
-        '
-        Me.MSIGroupBox.Controls.Add(Me.Panel1)
-        Me.MSIGroupBox.Controls.Add(Me.TopLevelRadioButton)
-        Me.MSIGroupBox.Controls.Add(Me.SubfolderRadioButton)
-        Me.MSIGroupBox.Controls.Add(Me.ShortcutStartCheckBox)
-        Me.MSIGroupBox.Controls.Add(Me.Label3)
-        Me.MSIGroupBox.Controls.Add(Me.Label2)
-        Me.MSIGroupBox.Controls.Add(Me.ShortcutTagCheckBox)
-        Me.MSIGroupBox.Controls.Add(Me.ShortcutDesktopCheckBox)
-        Me.MSIGroupBox.Controls.Add(Me.ShortcutTagTextBox)
-        Me.MSIGroupBox.Controls.Add(Me.Label4)
-        Me.MSIGroupBox.Controls.Add(Me.Label1)
-        Me.MSIGroupBox.Enabled = False
-        Me.MSIGroupBox.Location = New System.Drawing.Point(10, 363)
-        Me.MSIGroupBox.Name = "MSIGroupBox"
-        Me.MSIGroupBox.Size = New System.Drawing.Size(484, 107)
-        Me.MSIGroupBox.TabIndex = 4
-        Me.MSIGroupBox.TabStop = False
-        Me.MSIGroupBox.Text = "MSI Options"
-        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Panel1.Controls.Add(Me.PerMachineRadioButton)
         Me.Panel1.Controls.Add(Me.PerUserRadioButton)
-        Me.Panel1.Location = New System.Drawing.Point(89, 76)
+        Me.Panel1.Location = New System.Drawing.Point(91, 73)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(200, 26)
         Me.Panel1.TabIndex = 9
@@ -403,9 +339,9 @@ Partial Class RemoteAppCreateClientConnection
         'TopLevelRadioButton
         '
         Me.TopLevelRadioButton.AutoSize = True
-        Me.TopLevelRadioButton.Location = New System.Drawing.Point(366, 17)
+        Me.TopLevelRadioButton.Location = New System.Drawing.Point(368, 14)
         Me.TopLevelRadioButton.Name = "TopLevelRadioButton"
-        Me.TopLevelRadioButton.Size = New System.Drawing.Size(72, 19)
+        Me.TopLevelRadioButton.Size = New System.Drawing.Size(71, 19)
         Me.TopLevelRadioButton.TabIndex = 4
         Me.TopLevelRadioButton.Text = "Top level"
         Me.TopLevelRadioButton.UseVisualStyleBackColor = True
@@ -414,7 +350,7 @@ Partial Class RemoteAppCreateClientConnection
         '
         Me.SubfolderRadioButton.AutoSize = True
         Me.SubfolderRadioButton.Checked = True
-        Me.SubfolderRadioButton.Location = New System.Drawing.Point(284, 17)
+        Me.SubfolderRadioButton.Location = New System.Drawing.Point(286, 14)
         Me.SubfolderRadioButton.Name = "SubfolderRadioButton"
         Me.SubfolderRadioButton.Size = New System.Drawing.Size(76, 19)
         Me.SubfolderRadioButton.TabIndex = 3
@@ -427,7 +363,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.ShortcutStartCheckBox.AutoSize = True
         Me.ShortcutStartCheckBox.Checked = True
         Me.ShortcutStartCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ShortcutStartCheckBox.Location = New System.Drawing.Point(191, 18)
+        Me.ShortcutStartCheckBox.Location = New System.Drawing.Point(193, 15)
         Me.ShortcutStartCheckBox.Name = "ShortcutStartCheckBox"
         Me.ShortcutStartCheckBox.Size = New System.Drawing.Size(87, 19)
         Me.ShortcutStartCheckBox.TabIndex = 2
@@ -437,7 +373,7 @@ Partial Class RemoteAppCreateClientConnection
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(289, 50)
+        Me.Label3.Location = New System.Drawing.Point(291, 47)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(11, 15)
         Me.Label3.TabIndex = 7
@@ -446,7 +382,7 @@ Partial Class RemoteAppCreateClientConnection
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(110, 49)
+        Me.Label2.Location = New System.Drawing.Point(112, 46)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(11, 15)
         Me.Label2.TabIndex = 4
@@ -457,7 +393,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.ShortcutTagCheckBox.AutoSize = True
         Me.ShortcutTagCheckBox.Checked = True
         Me.ShortcutTagCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ShortcutTagCheckBox.Location = New System.Drawing.Point(10, 48)
+        Me.ShortcutTagCheckBox.Location = New System.Drawing.Point(15, 45)
         Me.ShortcutTagCheckBox.Name = "ShortcutTagCheckBox"
         Me.ShortcutTagCheckBox.Size = New System.Drawing.Size(94, 19)
         Me.ShortcutTagCheckBox.TabIndex = 5
@@ -466,7 +402,7 @@ Partial Class RemoteAppCreateClientConnection
         '
         'ShortcutTagTextBox
         '
-        Me.ShortcutTagTextBox.Location = New System.Drawing.Point(127, 46)
+        Me.ShortcutTagTextBox.Location = New System.Drawing.Point(129, 43)
         Me.ShortcutTagTextBox.Name = "ShortcutTagTextBox"
         Me.ShortcutTagTextBox.Size = New System.Drawing.Size(156, 23)
         Me.ShortcutTagTextBox.TabIndex = 6
@@ -475,7 +411,7 @@ Partial Class RemoteAppCreateClientConnection
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 80)
+        Me.Label4.Location = New System.Drawing.Point(9, 78)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(75, 15)
         Me.Label4.TabIndex = 8
@@ -484,7 +420,7 @@ Partial Class RemoteAppCreateClientConnection
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 19)
+        Me.Label1.Location = New System.Drawing.Point(9, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(103, 15)
         Me.Label1.TabIndex = 0
@@ -492,12 +428,11 @@ Partial Class RemoteAppCreateClientConnection
         '
         'ResetButton
         '
-        Me.ResetButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ResetButton.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ResetButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ResetButton.ImageIndex = 3
         Me.ResetButton.ImageList = Me.SmallerIcons
-        Me.ResetButton.Location = New System.Drawing.Point(126, 555)
+        Me.ResetButton.Location = New System.Drawing.Point(126, 158)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(121, 29)
         Me.ResetButton.TabIndex = 7
@@ -507,12 +442,11 @@ Partial Class RemoteAppCreateClientConnection
         '
         'SaveButton
         '
-        Me.SaveButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.SaveButton.BackColor = System.Drawing.Color.WhiteSmoke
         Me.SaveButton.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.SaveButton.ImageIndex = 0
         Me.SaveButton.ImageList = Me.SmallerIcons
-        Me.SaveButton.Location = New System.Drawing.Point(12, 555)
+        Me.SaveButton.Location = New System.Drawing.Point(12, 158)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(108, 29)
         Me.SaveButton.TabIndex = 6
@@ -520,22 +454,10 @@ Partial Class RemoteAppCreateClientConnection
         Me.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SaveButton.UseVisualStyleBackColor = False
         '
-        'FileTypesGroupBox
-        '
-        Me.FileTypesGroupBox.Controls.Add(Me.FTACountLabel)
-        Me.FileTypesGroupBox.Controls.Add(Me.DisabledFTACheckBox)
-        Me.FileTypesGroupBox.Controls.Add(Me.FTAButton)
-        Me.FileTypesGroupBox.Location = New System.Drawing.Point(12, 294)
-        Me.FileTypesGroupBox.Name = "FileTypesGroupBox"
-        Me.FileTypesGroupBox.Size = New System.Drawing.Size(482, 63)
-        Me.FileTypesGroupBox.TabIndex = 3
-        Me.FileTypesGroupBox.TabStop = False
-        Me.FileTypesGroupBox.Text = "File Type Associations"
-        '
         'FTACountLabel
         '
         Me.FTACountLabel.AutoSize = True
-        Me.FTACountLabel.Location = New System.Drawing.Point(154, 29)
+        Me.FTACountLabel.Location = New System.Drawing.Point(163, 22)
         Me.FTACountLabel.Name = "FTACountLabel"
         Me.FTACountLabel.Size = New System.Drawing.Size(52, 15)
         Me.FTACountLabel.TabIndex = 1
@@ -544,30 +466,17 @@ Partial Class RemoteAppCreateClientConnection
         'DisabledFTACheckBox
         '
         Me.DisabledFTACheckBox.AutoSize = True
-        Me.DisabledFTACheckBox.Location = New System.Drawing.Point(10, 28)
+        Me.DisabledFTACheckBox.Location = New System.Drawing.Point(12, 21)
         Me.DisabledFTACheckBox.Name = "DisabledFTACheckBox"
         Me.DisabledFTACheckBox.Size = New System.Drawing.Size(71, 19)
         Me.DisabledFTACheckBox.TabIndex = 0
         Me.DisabledFTACheckBox.Text = "Disabled"
         Me.DisabledFTACheckBox.UseVisualStyleBackColor = True
         '
-        'GroupBoxSignRDP
-        '
-        Me.GroupBoxSignRDP.Controls.Add(Me.CheckBoxCreateSignedAndUnsigned)
-        Me.GroupBoxSignRDP.Controls.Add(Me.CertificateComboBox)
-        Me.GroupBoxSignRDP.Controls.Add(Me.CertificateLabel)
-        Me.GroupBoxSignRDP.Controls.Add(Me.CheckBoxSignRDPEnabled)
-        Me.GroupBoxSignRDP.Location = New System.Drawing.Point(12, 477)
-        Me.GroupBoxSignRDP.Name = "GroupBoxSignRDP"
-        Me.GroupBoxSignRDP.Size = New System.Drawing.Size(482, 68)
-        Me.GroupBoxSignRDP.TabIndex = 5
-        Me.GroupBoxSignRDP.TabStop = False
-        Me.GroupBoxSignRDP.Text = "Digital Signing"
-        '
         'CheckBoxCreateSignedAndUnsigned
         '
         Me.CheckBoxCreateSignedAndUnsigned.AutoSize = True
-        Me.CheckBoxCreateSignedAndUnsigned.Location = New System.Drawing.Point(10, 41)
+        Me.CheckBoxCreateSignedAndUnsigned.Location = New System.Drawing.Point(12, 42)
         Me.CheckBoxCreateSignedAndUnsigned.Name = "CheckBoxCreateSignedAndUnsigned"
         Me.CheckBoxCreateSignedAndUnsigned.Size = New System.Drawing.Size(175, 19)
         Me.CheckBoxCreateSignedAndUnsigned.TabIndex = 1
@@ -579,7 +488,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.CertificateComboBox.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CertificateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CertificateComboBox.FormattingEnabled = True
-        Me.CertificateComboBox.Location = New System.Drawing.Point(282, 25)
+        Me.CertificateComboBox.Location = New System.Drawing.Point(280, 15)
         Me.CertificateComboBox.Name = "CertificateComboBox"
         Me.CertificateComboBox.Size = New System.Drawing.Size(191, 23)
         Me.CertificateComboBox.TabIndex = 3
@@ -587,7 +496,7 @@ Partial Class RemoteAppCreateClientConnection
         'CertificateLabel
         '
         Me.CertificateLabel.AutoSize = True
-        Me.CertificateLabel.Location = New System.Drawing.Point(212, 28)
+        Me.CertificateLabel.Location = New System.Drawing.Point(210, 18)
         Me.CertificateLabel.Name = "CertificateLabel"
         Me.CertificateLabel.Size = New System.Drawing.Size(64, 15)
         Me.CertificateLabel.TabIndex = 2
@@ -596,12 +505,130 @@ Partial Class RemoteAppCreateClientConnection
         'CheckBoxSignRDPEnabled
         '
         Me.CheckBoxSignRDPEnabled.AutoSize = True
-        Me.CheckBoxSignRDPEnabled.Location = New System.Drawing.Point(10, 22)
+        Me.CheckBoxSignRDPEnabled.Location = New System.Drawing.Point(12, 17)
         Me.CheckBoxSignRDPEnabled.Name = "CheckBoxSignRDPEnabled"
         Me.CheckBoxSignRDPEnabled.Size = New System.Drawing.Size(93, 19)
         Me.CheckBoxSignRDPEnabled.TabIndex = 0
         Me.CheckBoxSignRDPEnabled.Text = "Sign RDP file"
         Me.CheckBoxSignRDPEnabled.UseVisualStyleBackColor = True
+        '
+        'TabControl
+        '
+        Me.TabControl.Controls.Add(Me.HostTabPage)
+        Me.TabControl.Controls.Add(Me.OptionsTabPage)
+        Me.TabControl.Controls.Add(Me.GatewayTabPage)
+        Me.TabControl.Controls.Add(Me.FileTypesTabPage)
+        Me.TabControl.Controls.Add(Me.MSIOptionsTabPage)
+        Me.TabControl.Controls.Add(Me.SigningTabPage)
+        Me.TabControl.Location = New System.Drawing.Point(12, 12)
+        Me.TabControl.Name = "TabControl"
+        Me.TabControl.SelectedIndex = 0
+        Me.TabControl.Size = New System.Drawing.Size(492, 137)
+        Me.TabControl.TabIndex = 10
+        '
+        'HostTabPage
+        '
+        Me.HostTabPage.Controls.Add(Me.Label13)
+        Me.HostTabPage.Controls.Add(Me.ServerAddress)
+        Me.HostTabPage.Controls.Add(Me.Label14)
+        Me.HostTabPage.Controls.Add(Me.AltServerAddress)
+        Me.HostTabPage.Controls.Add(Me.Label12)
+        Me.HostTabPage.Controls.Add(Me.ServerPort)
+        Me.HostTabPage.Location = New System.Drawing.Point(4, 24)
+        Me.HostTabPage.Name = "HostTabPage"
+        Me.HostTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.HostTabPage.Size = New System.Drawing.Size(484, 109)
+        Me.HostTabPage.TabIndex = 0
+        Me.HostTabPage.Text = "Host"
+        Me.HostTabPage.UseVisualStyleBackColor = True
+        '
+        'OptionsTabPage
+        '
+        Me.OptionsTabPage.Controls.Add(Me.MSIRadioButton)
+        Me.OptionsTabPage.Controls.Add(Me.RDPRadioButton)
+        Me.OptionsTabPage.Controls.Add(Me.EditAfterSave)
+        Me.OptionsTabPage.Controls.Add(Me.CreateRAWebIcon)
+        Me.OptionsTabPage.Location = New System.Drawing.Point(4, 24)
+        Me.OptionsTabPage.Name = "OptionsTabPage"
+        Me.OptionsTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.OptionsTabPage.Size = New System.Drawing.Size(484, 109)
+        Me.OptionsTabPage.TabIndex = 1
+        Me.OptionsTabPage.Text = "Options"
+        Me.OptionsTabPage.UseVisualStyleBackColor = True
+        '
+        'GatewayTabPage
+        '
+        Me.GatewayTabPage.Controls.Add(Me.AttemptDirectCheckBox)
+        Me.GatewayTabPage.Controls.Add(Me.UseRDGatewayCheckBox)
+        Me.GatewayTabPage.Controls.Add(Me.GatewayAddress)
+        Me.GatewayTabPage.Controls.Add(Me.RDGWLabel)
+        Me.GatewayTabPage.Location = New System.Drawing.Point(4, 24)
+        Me.GatewayTabPage.Name = "GatewayTabPage"
+        Me.GatewayTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.GatewayTabPage.Size = New System.Drawing.Size(484, 109)
+        Me.GatewayTabPage.TabIndex = 2
+        Me.GatewayTabPage.Text = "Gateway"
+        Me.GatewayTabPage.UseVisualStyleBackColor = True
+        '
+        'FileTypesTabPage
+        '
+        Me.FileTypesTabPage.Controls.Add(Me.FTACountLabel)
+        Me.FileTypesTabPage.Controls.Add(Me.FTAButton)
+        Me.FileTypesTabPage.Controls.Add(Me.DisabledFTACheckBox)
+        Me.FileTypesTabPage.Location = New System.Drawing.Point(4, 24)
+        Me.FileTypesTabPage.Name = "FileTypesTabPage"
+        Me.FileTypesTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.FileTypesTabPage.Size = New System.Drawing.Size(484, 109)
+        Me.FileTypesTabPage.TabIndex = 3
+        Me.FileTypesTabPage.Text = "File types"
+        Me.FileTypesTabPage.UseVisualStyleBackColor = True
+        '
+        'MSIOptionsTabPage
+        '
+        Me.MSIOptionsTabPage.Controls.Add(Me.Panel1)
+        Me.MSIOptionsTabPage.Controls.Add(Me.Label1)
+        Me.MSIOptionsTabPage.Controls.Add(Me.TopLevelRadioButton)
+        Me.MSIOptionsTabPage.Controls.Add(Me.Label4)
+        Me.MSIOptionsTabPage.Controls.Add(Me.SubfolderRadioButton)
+        Me.MSIOptionsTabPage.Controls.Add(Me.ShortcutTagTextBox)
+        Me.MSIOptionsTabPage.Controls.Add(Me.ShortcutStartCheckBox)
+        Me.MSIOptionsTabPage.Controls.Add(Me.ShortcutDesktopCheckBox)
+        Me.MSIOptionsTabPage.Controls.Add(Me.Label3)
+        Me.MSIOptionsTabPage.Controls.Add(Me.ShortcutTagCheckBox)
+        Me.MSIOptionsTabPage.Controls.Add(Me.Label2)
+        Me.MSIOptionsTabPage.Location = New System.Drawing.Point(4, 24)
+        Me.MSIOptionsTabPage.Name = "MSIOptionsTabPage"
+        Me.MSIOptionsTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.MSIOptionsTabPage.Size = New System.Drawing.Size(484, 109)
+        Me.MSIOptionsTabPage.TabIndex = 4
+        Me.MSIOptionsTabPage.Text = "MSI options"
+        Me.MSIOptionsTabPage.UseVisualStyleBackColor = True
+        '
+        'SigningTabPage
+        '
+        Me.SigningTabPage.Controls.Add(Me.RdpsignErrorLabel)
+        Me.SigningTabPage.Controls.Add(Me.CheckBoxCreateSignedAndUnsigned)
+        Me.SigningTabPage.Controls.Add(Me.CheckBoxSignRDPEnabled)
+        Me.SigningTabPage.Controls.Add(Me.CertificateComboBox)
+        Me.SigningTabPage.Controls.Add(Me.CertificateLabel)
+        Me.SigningTabPage.Location = New System.Drawing.Point(4, 24)
+        Me.SigningTabPage.Name = "SigningTabPage"
+        Me.SigningTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.SigningTabPage.Size = New System.Drawing.Size(484, 109)
+        Me.SigningTabPage.TabIndex = 5
+        Me.SigningTabPage.Text = "Signing"
+        Me.SigningTabPage.UseVisualStyleBackColor = True
+        '
+        'RdpsignErrorLabel
+        '
+        Me.RdpsignErrorLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RdpsignErrorLabel.Location = New System.Drawing.Point(6, 64)
+        Me.RdpsignErrorLabel.Name = "RdpsignErrorLabel"
+        Me.RdpsignErrorLabel.Size = New System.Drawing.Size(472, 21)
+        Me.RdpsignErrorLabel.TabIndex = 4
+        Me.RdpsignErrorLabel.Text = "RdpsignErrorLabel"
+        Me.RdpsignErrorLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'RemoteAppCreateClientConnection
         '
@@ -610,13 +637,8 @@ Partial Class RemoteAppCreateClientConnection
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.CancelEditButton
-        Me.ClientSize = New System.Drawing.Size(507, 596)
-        Me.Controls.Add(Me.GroupBoxSignRDP)
-        Me.Controls.Add(Me.FileTypesGroupBox)
-        Me.Controls.Add(Me.MSIGroupBox)
-        Me.Controls.Add(Me.ClientConnectionGroupBox)
-        Me.Controls.Add(Me.RDGWGroupBox)
-        Me.Controls.Add(Me.ServerGroupBox)
+        Me.ClientSize = New System.Drawing.Size(513, 198)
+        Me.Controls.Add(Me.TabControl)
         Me.Controls.Add(Me.CreateButton)
         Me.Controls.Add(Me.SaveButton)
         Me.Controls.Add(Me.ResetButton)
@@ -628,20 +650,21 @@ Partial Class RemoteAppCreateClientConnection
         Me.MinimizeBox = False
         Me.Name = "RemoteAppCreateClientConnection"
         Me.Text = "RemoteAppCreateClientConnection"
-        Me.ServerGroupBox.ResumeLayout(False)
-        Me.ServerGroupBox.PerformLayout()
-        Me.RDGWGroupBox.ResumeLayout(False)
-        Me.RDGWGroupBox.PerformLayout()
-        Me.ClientConnectionGroupBox.ResumeLayout(False)
-        Me.ClientConnectionGroupBox.PerformLayout()
-        Me.MSIGroupBox.ResumeLayout(False)
-        Me.MSIGroupBox.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.FileTypesGroupBox.ResumeLayout(False)
-        Me.FileTypesGroupBox.PerformLayout()
-        Me.GroupBoxSignRDP.ResumeLayout(False)
-        Me.GroupBoxSignRDP.PerformLayout()
+        Me.TabControl.ResumeLayout(False)
+        Me.HostTabPage.ResumeLayout(False)
+        Me.HostTabPage.PerformLayout()
+        Me.OptionsTabPage.ResumeLayout(False)
+        Me.OptionsTabPage.PerformLayout()
+        Me.GatewayTabPage.ResumeLayout(False)
+        Me.GatewayTabPage.PerformLayout()
+        Me.FileTypesTabPage.ResumeLayout(False)
+        Me.FileTypesTabPage.PerformLayout()
+        Me.MSIOptionsTabPage.ResumeLayout(False)
+        Me.MSIOptionsTabPage.PerformLayout()
+        Me.SigningTabPage.ResumeLayout(False)
+        Me.SigningTabPage.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -650,18 +673,15 @@ Partial Class RemoteAppCreateClientConnection
     Friend WithEvents CreateButton As System.Windows.Forms.Button
     Friend WithEvents FileSaveRDP As System.Windows.Forms.SaveFileDialog
     Friend WithEvents CancelEditButton As System.Windows.Forms.Button
-    Friend WithEvents ServerGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents ServerPort As System.Windows.Forms.TextBox
     Friend WithEvents AltServerAddress As System.Windows.Forms.TextBox
     Friend WithEvents ServerAddress As System.Windows.Forms.TextBox
-    Friend WithEvents RDGWGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents UseRDGatewayCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents RDGWLabel As System.Windows.Forms.Label
     Friend WithEvents GatewayAddress As System.Windows.Forms.TextBox
-    Friend WithEvents ClientConnectionGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents MSIRadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents RDPRadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents FTAButton As System.Windows.Forms.Button
@@ -669,7 +689,6 @@ Partial Class RemoteAppCreateClientConnection
     Friend WithEvents FileSaveMSI As System.Windows.Forms.SaveFileDialog
     Friend WithEvents AttemptDirectCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ShortcutDesktopCheckBox As System.Windows.Forms.CheckBox
-    Friend WithEvents MSIGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents ShortcutStartCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ShortcutTagCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ShortcutTagTextBox As System.Windows.Forms.TextBox
@@ -685,12 +704,18 @@ Partial Class RemoteAppCreateClientConnection
     Friend WithEvents PerMachineRadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents PerUserRadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents FileTypesGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents DisabledFTACheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents FTACountLabel As System.Windows.Forms.Label
-    Friend WithEvents GroupBoxSignRDP As GroupBox
     Friend WithEvents CheckBoxSignRDPEnabled As CheckBox
     Friend WithEvents CertificateComboBox As ComboBox
     Friend WithEvents CertificateLabel As Label
     Friend WithEvents CheckBoxCreateSignedAndUnsigned As CheckBox
+    Friend WithEvents TabControl As TabControl
+    Friend WithEvents HostTabPage As TabPage
+    Friend WithEvents OptionsTabPage As TabPage
+    Friend WithEvents GatewayTabPage As TabPage
+    Friend WithEvents FileTypesTabPage As TabPage
+    Friend WithEvents MSIOptionsTabPage As TabPage
+    Friend WithEvents SigningTabPage As TabPage
+    Friend WithEvents RdpsignErrorLabel As Label
 End Class
