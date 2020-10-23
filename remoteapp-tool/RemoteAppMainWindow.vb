@@ -164,4 +164,20 @@ Public Class RemoteAppMainWindow
         RemoteAppEditWindow.CreateRemoteApp(True)
         ReloadApps()
     End Sub
+
+    Private Sub BackupAllRemoteAppsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BackupAllRemoteAppsToolStripMenuItem.Click
+        BackupSaveFileDialog.FileName = System.Net.Dns.GetHostName & " RemoteApps Backup " & DateTime.Now.ToString("yyyy-MM-dd") & ".reg"
+        DialogResult = BackupSaveFileDialog.ShowDialog()
+
+        If DialogResult = DialogResult.OK Then
+            Dim RemoteAppRegPath = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\TSAppAllowList\Applications"
+            Dim BackupSavePath = BackupSaveFileDialog.FileName
+
+            Dim StartInfo As New ProcessStartInfo("reg.exe", "export """ & RemoteAppRegPath & """ """ & BackupSavePath & """ /y")
+            StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+            System.Diagnostics.Process.Start(StartInfo)
+        End If
+
+    End Sub
+
 End Class
