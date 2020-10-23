@@ -149,6 +149,7 @@ Partial Class RemoteAppAboutWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "RemoteAppAboutWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "RemoteAppAboutWindow"
         Me.ResumeLayout(False)
 

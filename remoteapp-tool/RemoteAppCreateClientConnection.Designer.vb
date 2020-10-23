@@ -649,6 +649,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "RemoteAppCreateClientConnection"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "RemoteAppCreateClientConnection"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

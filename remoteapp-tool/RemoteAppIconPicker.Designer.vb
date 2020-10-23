@@ -35,6 +35,7 @@ Partial Class RemoteAppIconPicker
         Me.IconIndex = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SecurityDescriptor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ShowInTSWA = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.SmallIcons = New System.Windows.Forms.ImageList(Me.components)
         Me.BrowseButton = New System.Windows.Forms.Button()
         Me.SmallerIcons = New System.Windows.Forms.ImageList(Me.components)
         Me.IconPathTextBox = New System.Windows.Forms.TextBox()
@@ -45,7 +46,6 @@ Partial Class RemoteAppIconPicker
         Me.FileTypeLabel = New System.Windows.Forms.Label()
         Me.FileTypeTextBox = New System.Windows.Forms.TextBox()
         Me.IconIndexLabel = New System.Windows.Forms.Label()
-        Me.SmallIcons = New System.Windows.Forms.ImageList(Me.components)
         Me.SuspendLayout()
         '
         'IconList
@@ -105,6 +105,12 @@ Partial Class RemoteAppIconPicker
         'ShowInTSWA
         '
         Me.ShowInTSWA.Text = "ShowInTSWA"
+        '
+        'SmallIcons
+        '
+        Me.SmallIcons.ImageStream = CType(resources.GetObject("SmallIcons.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.SmallIcons.TransparentColor = System.Drawing.Color.Transparent
+        Me.SmallIcons.Images.SetKeyName(0, "smallicons.ico")
         '
         'BrowseButton
         '
@@ -214,16 +220,10 @@ Partial Class RemoteAppIconPicker
         Me.IconIndexLabel.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.IconIndexLabel.Location = New System.Drawing.Point(376, 15)
         Me.IconIndexLabel.Name = "IconIndexLabel"
-        Me.IconIndexLabel.Size = New System.Drawing.Size(38, 15)
+        Me.IconIndexLabel.Size = New System.Drawing.Size(39, 15)
         Me.IconIndexLabel.TabIndex = 2
         Me.IconIndexLabel.Text = "Index:"
         Me.IconIndexLabel.Visible = False
-        '
-        'SmallIcons
-        '
-        Me.SmallIcons.ImageStream = CType(resources.GetObject("SmallIcons.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.SmallIcons.TransparentColor = System.Drawing.Color.Transparent
-        Me.SmallIcons.Images.SetKeyName(0, "smallicons.ico")
         '
         'RemoteAppIconPicker
         '
@@ -248,6 +248,7 @@ Partial Class RemoteAppIconPicker
         Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(515, 270)
         Me.Name = "RemoteAppIconPicker"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "RemoteAppIconPicker"
         Me.ResumeLayout(False)
         Me.PerformLayout()
