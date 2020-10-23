@@ -211,6 +211,7 @@ Partial Class RemoteAppFileTypeAssociation
         Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(510, 247)
         Me.Name = "RemoteAppFileTypeAssociation"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "File Type Associations"
         Me.ResumeLayout(False)
         Me.PerformLayout()

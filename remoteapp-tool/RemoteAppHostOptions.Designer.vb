@@ -44,7 +44,7 @@ Partial Class RemoteAppHostOptions
         Me.TimeoutDisconnectedCheckBox.AutoSize = True
         Me.TimeoutDisconnectedCheckBox.Location = New System.Drawing.Point(14, 64)
         Me.TimeoutDisconnectedCheckBox.Name = "TimeoutDisconnectedCheckBox"
-        Me.TimeoutDisconnectedCheckBox.Size = New System.Drawing.Size(212, 19)
+        Me.TimeoutDisconnectedCheckBox.Size = New System.Drawing.Size(211, 19)
         Me.TimeoutDisconnectedCheckBox.TabIndex = 2
         Me.TimeoutDisconnectedCheckBox.Text = "Timeout for disconnected sessions:"
         Me.TimeoutDisconnectedCheckBox.UseVisualStyleBackColor = True
@@ -82,7 +82,7 @@ Partial Class RemoteAppHostOptions
         Me.TimeoutIdleCheckBox.AutoSize = True
         Me.TimeoutIdleCheckBox.Location = New System.Drawing.Point(14, 91)
         Me.TimeoutIdleCheckBox.Name = "TimeoutIdleCheckBox"
-        Me.TimeoutIdleCheckBox.Size = New System.Drawing.Size(160, 19)
+        Me.TimeoutIdleCheckBox.Size = New System.Drawing.Size(159, 19)
         Me.TimeoutIdleCheckBox.TabIndex = 5
         Me.TimeoutIdleCheckBox.Text = "Timeout for idle sessions:"
         Me.TimeoutIdleCheckBox.UseVisualStyleBackColor = True
@@ -145,7 +145,7 @@ Partial Class RemoteAppHostOptions
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(385, 33)
         Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Note: Settings here will be overridden by local policy and group policy. Some set" & _
+        Me.Label3.Text = "Note: Settings here will be overridden by local policy and group policy. Some set" &
     "tings require a reboot."
         '
         'CancelEditButton
@@ -199,6 +199,7 @@ Partial Class RemoteAppHostOptions
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "RemoteAppHostOptions"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Host Options"
         Me.ResumeLayout(False)
         Me.PerformLayout()

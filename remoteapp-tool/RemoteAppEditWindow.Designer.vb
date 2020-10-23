@@ -415,6 +415,7 @@ Partial Class RemoteAppEditWindow
         Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(445, 430)
         Me.Name = "RemoteAppEditWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "RemoteAppEditWindow"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
