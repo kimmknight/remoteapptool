@@ -16,6 +16,8 @@ If you have questions, comments or suggestions about RemoteApp Tool, please visi
 * Set options such as session timeouts
 * Select icons for your apps
 * File type associations for deployed apps
+* Sign RDP files
+* Backup RemoteApps
 
 ## Requirements
 
@@ -27,9 +29,19 @@ If you have questions, comments or suggestions about RemoteApp Tool, please visi
 
 ## Download
 
-[Latest Installer](http://www.kimknight.net/remoteapptool/RemoteApp%20Tool%205300.msi)
+**Latest:**
 
-[Latest Portable](http://www.kimknight.net/remoteapptool/remoteapptool5300.zip)
+[RemoteApp Tool 6.0.0.0 Installer](https://github.com/kimmknight/remoteapptool/releases/download/v6.0.0.0/RemoteApp.Tool.6000.msi)
+
+[RemoteApp Tool 6.0.0.0 Zip](https://github.com/kimmknight/remoteapptool/releases/download/v6.0.0.0/RemoteApp.Tool.6000.zip)
+
+Please note: The latest installer no longer works with on Windows XP, use the Zip instead.
+
+**Previous:**
+
+[RemoteApp Tool 5.3.0.0 Installer](http://www.kimknight.net/remoteapptool/RemoteApp%20Tool%205300.msi)
+
+[RemoteApp Tool 5.3.0.0 Zip](http://www.kimknight.net/remoteapptool/remoteapptool5300.zip)
 
 ## User guide
 
