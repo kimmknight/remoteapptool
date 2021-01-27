@@ -1,3 +1,4 @@
+<meta name="google-site-verification" content="MGrMbBi28Ut57MeqKI6srDSmlrprH0lug6rwNMIi0_A" />
 # RemoteApp Tool
 With Microsoft RemoteApp technology, you can seamlessly use an application that is running on another computer.
 
