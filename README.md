@@ -38,7 +38,7 @@ If you have questions, comments or suggestions about RemoteApp Tool, please visi
 
 [RemoteApp Tool 6.0.0.0 Zip](https://github.com/kimmknight/remoteapptool/releases/download/v6.0.0.0/RemoteApp.Tool.6000.zip)
 
-Please note: The latest installer no longer works with on Windows XP, use the Zip instead.
+Please note: The latest installer no longer works on Windows XP, use the Zip instead.
 
 **Previous:**
 
