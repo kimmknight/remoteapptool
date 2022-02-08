@@ -61,7 +61,7 @@ Module RemoteAppFunction
 
     Public Sub ValidateDNSname(ByVal TheTextBox As TextBox)
         ' pattern matches any character that is NOT A-Z (allows upper and lower case alphabets)
-        Dim rx As New Regex("[^\p{L}LlUu0-9\-\._]")
+        Dim rx As New Regex("[^\p{L}LlUu0-9\-\._:]")
         If (rx.IsMatch(TheTextBox.Text)) Then
             TheTextBox.Text = rx.Replace(TheTextBox.Text, "")
             TheTextBox.Select(TheTextBox.Text.Length, 0)
