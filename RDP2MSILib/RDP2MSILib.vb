@@ -36,7 +36,9 @@ Public Class RDP
         If Not WixInstalled() Then Exit Sub
 
         'Get RDP file parent folder path
-        Dim rdpParentFolder = My.Computer.FileSystem.GetParentPath(rdpFilePath)
+        'Dim rdpParentFolder = My.Computer.FileSystem.GetParentPath(rdpFilePath)
+        Dim lastSlashIndex = rdpFilePath.LastIndexOf("\")
+        Dim rdpParentFolder = Left(rdpFilePath, lastSlashIndex)
 
         'Get the RDP filename and filename minus extension
         Dim rdpFileName = My.Computer.FileSystem.GetFileInfo(rdpFilePath).Name
