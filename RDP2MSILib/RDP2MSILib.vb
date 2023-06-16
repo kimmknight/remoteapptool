@@ -152,13 +152,13 @@ Public Class RDP
     End Function
 
     Private Function WixPath()
-        Dim searchExe = "\candle.exe"
+        Dim searchExe = "candle.exe"
         WixPath = ""
         If Not Environment.GetEnvironmentVariable("WIX") = "" Then
             WixPath = Environment.GetEnvironmentVariable("WIX") & "bin"
-        ElseIf My.Computer.FileSystem.DirectoryExists(My.Application.Info.DirectoryPath & "\wix\" & searchExe) Then
+        ElseIf My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath & "\wix\" & searchExe) Then
             WixPath = My.Application.Info.DirectoryPath & "\wix"
-        ElseIf My.Computer.FileSystem.DirectoryExists(My.Application.Info.DirectoryPath & "\wix\bin\" & searchExe) Then
+        ElseIf My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath & "\wix\bin\" & searchExe) Then
             WixPath = My.Application.Info.DirectoryPath & "\wix\bin"
         End If
     End Function
