@@ -25,7 +25,7 @@ If you have questions, comments or suggestions about RemoteApp Tool, please visi
 ## Requirements
 
 * Microsoft .Net Framework 4
-* [WiX Toolset](http://wixtoolset.org/) (If you want to create MSIs. Reboot after installing.)
+* [WiX Toolset v3](https://wixtoolset.org/docs/wix3/) (If you want to create MSIs. Reboot after installing.)
 * A **supported** edition of Windows XP, 7, 8, 10, or Server. See the [compatibility chart](https://github.com/kimmknight/remoteapptool/wiki/Windows-Compatibility).
 
 **Note:** If you try to host RemoteApps on an incompatible edition of Windows (eg. Windows 10 Home), the tool will run but RemoteApps ***will not work***. The RDP client will appear to be connecting, then just disappear with no error shown.
