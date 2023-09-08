@@ -60,6 +60,7 @@ Public Class RemoteAppMainWindow
         EditButton.Enabled = False
         DeleteButton.Enabled = False
         CreateClientConnection.Enabled = False
+        Me.DuplicateToolStripMenuItem.Enabled = False
     End Sub
 
     Private Sub AppList_DoubleClick(sender As Object, e As EventArgs) Handles AppList.DoubleClick
@@ -72,11 +73,13 @@ Public Class RemoteAppMainWindow
         If AppList.SelectedItems.Count = 1 Then
             Me.EditButton.Enabled = True
             Me.DeleteButton.Enabled = True
-            CreateClientConnection.Enabled = True
+            Me.CreateClientConnection.Enabled = True
+            Me.DuplicateToolStripMenuItem.Enabled = True
         Else
             Me.EditButton.Enabled = False
             Me.DeleteButton.Enabled = False
             Me.CreateClientConnection.Enabled = False
+            Me.DuplicateToolStripMenuItem.Enabled = False
         End If
     End Sub
 
@@ -180,4 +183,13 @@ Public Class RemoteAppMainWindow
 
     End Sub
 
+    Private Sub DuplicateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DuplicateToolStripMenuItem.Click
+        DuplicateRemoteApp(AppList.SelectedItems(0).Text)
+        ReloadApps()
+    End Sub
+
+    Private Sub DuplicateRemoteApp(AppName As String)
+        Dim sra As New SystemRemoteApps
+        sra.DuplicateApp(AppName)
+    End Sub
 End Class

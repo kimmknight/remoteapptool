@@ -58,6 +58,7 @@ Partial Class RemoteAppMainWindow
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BackupSaveFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsMenuStrip.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -226,9 +227,9 @@ Partial Class RemoteAppMainWindow
         Me.CreateClientConnection.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.CreateClientConnection.ImageIndex = 3
         Me.CreateClientConnection.ImageList = Me.SmallerIcons
-        Me.CreateClientConnection.Location = New System.Drawing.Point(239, 224)
+        Me.CreateClientConnection.Location = New System.Drawing.Point(214, 223)
         Me.CreateClientConnection.Name = "CreateClientConnection"
-        Me.CreateClientConnection.Size = New System.Drawing.Size(183, 29)
+        Me.CreateClientConnection.Size = New System.Drawing.Size(208, 30)
         Me.CreateClientConnection.TabIndex = 6
         Me.CreateClientConnection.Text = "Create Client Connection..."
         Me.CreateClientConnection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -239,6 +240,7 @@ Partial Class RemoteAppMainWindow
         Me.ToolsMenuStrip.AllowMerge = False
         Me.ToolsMenuStrip.AutoSize = False
         Me.ToolsMenuStrip.BackColor = System.Drawing.Color.Transparent
+        Me.ToolsMenuStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolsMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.ToolsMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.ToolsMenuStrip.Name = "ToolsMenuStrip"
@@ -248,80 +250,80 @@ Partial Class RemoteAppMainWindow
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewRemoteAppadvancedToolStripMenuItem, Me.ToolStripSeparator2, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewRemoteAppadvancedToolStripMenuItem, Me.DuplicateToolStripMenuItem, Me.ToolStripSeparator2, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'NewRemoteAppadvancedToolStripMenuItem
         '
         Me.NewRemoteAppadvancedToolStripMenuItem.Name = "NewRemoteAppadvancedToolStripMenuItem"
-        Me.NewRemoteAppadvancedToolStripMenuItem.Size = New System.Drawing.Size(235, 22)
+        Me.NewRemoteAppadvancedToolStripMenuItem.Size = New System.Drawing.Size(293, 26)
         Me.NewRemoteAppadvancedToolStripMenuItem.Text = "New RemoteApp (advanced)..."
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(232, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(290, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(235, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(293, 26)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ToolsToolStripMenuItem
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HostOptionsToolStripMenuItem, Me.ToolStripSeparator3, Me.RemoveUnusedFileTypeAssociationsToolStripMenuItem, Me.BackupAllRemoteAppsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
         '
         'HostOptionsToolStripMenuItem
         '
         Me.HostOptionsToolStripMenuItem.Name = "HostOptionsToolStripMenuItem"
-        Me.HostOptionsToolStripMenuItem.Size = New System.Drawing.Size(280, 22)
+        Me.HostOptionsToolStripMenuItem.Size = New System.Drawing.Size(348, 26)
         Me.HostOptionsToolStripMenuItem.Text = "Host Options..."
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(277, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(345, 6)
         '
         'RemoveUnusedFileTypeAssociationsToolStripMenuItem
         '
         Me.RemoveUnusedFileTypeAssociationsToolStripMenuItem.Name = "RemoveUnusedFileTypeAssociationsToolStripMenuItem"
-        Me.RemoveUnusedFileTypeAssociationsToolStripMenuItem.Size = New System.Drawing.Size(280, 22)
+        Me.RemoveUnusedFileTypeAssociationsToolStripMenuItem.Size = New System.Drawing.Size(348, 26)
         Me.RemoveUnusedFileTypeAssociationsToolStripMenuItem.Text = "Remove unused file type associations..."
         '
         'BackupAllRemoteAppsToolStripMenuItem
         '
         Me.BackupAllRemoteAppsToolStripMenuItem.Name = "BackupAllRemoteAppsToolStripMenuItem"
-        Me.BackupAllRemoteAppsToolStripMenuItem.Size = New System.Drawing.Size(280, 22)
+        Me.BackupAllRemoteAppsToolStripMenuItem.Size = New System.Drawing.Size(348, 26)
         Me.BackupAllRemoteAppsToolStripMenuItem.Text = "Backup all RemoteApps..."
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WebsiteToolStripMenuItem, Me.ToolStripSeparator1, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(145, 26)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(113, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(142, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(145, 26)
         Me.AboutToolStripMenuItem.Text = "About..."
         '
         'PictureBox1
@@ -341,9 +343,15 @@ Partial Class RemoteAppMainWindow
         Me.BackupSaveFileDialog.DefaultExt = "reg"
         Me.BackupSaveFileDialog.Filter = "Windows Registry file|*.reg"
         '
+        'DuplicateToolStripMenuItem
+        '
+        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
+        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(293, 26)
+        Me.DuplicateToolStripMenuItem.Text = "Duplicate RemoteApp"
+        '
         'RemoteAppMainWindow
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(434, 261)
@@ -403,4 +411,5 @@ Partial Class RemoteAppMainWindow
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents BackupAllRemoteAppsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BackupSaveFileDialog As SaveFileDialog
+    Friend WithEvents DuplicateToolStripMenuItem As ToolStripMenuItem
 End Class

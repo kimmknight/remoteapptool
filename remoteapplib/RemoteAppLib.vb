@@ -95,6 +95,8 @@ Public Class SystemRemoteApps
 
         Dim AppKey As Microsoft.Win32.RegistryKey = BaseKey.OpenSubKey(Name)
 
+        If AppKey Is Nothing Then Return Nothing
+
         App.Name = Name
         App.FullName = AppKey.GetValue("Name", "")
         App.Path = AppKey.GetValue("Path", "")
@@ -151,6 +153,20 @@ Public Class SystemRemoteApps
             Next
         End If
 
+    End Sub
+
+    Public Sub DuplicateApp(Name As String)
+        Dim NewApp = GetApp(Name)
+
+        Dim NewName = NewApp.Name
+
+        While GetApp(NewName) IsNot Nothing
+            NewName = NewName & " copy"
+        End While
+
+        NewApp.Name = NewName
+
+        SaveApp(NewApp)
     End Sub
 
     Public Sub RenameApp(RemoteAppOldName As String, RemoteAppNewName As String)
