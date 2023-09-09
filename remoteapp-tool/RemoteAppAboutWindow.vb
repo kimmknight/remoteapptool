@@ -7,6 +7,7 @@ Public Class RemoteAppAboutWindow
         Me.Text = "About " & My.Application.Info.Title
         Me.TitleLabel.Text = My.Application.Info.Title
         Me.VersionLabel.Text = "Version " & My.Application.Info.Version.ToString
+        Me.CopyrightLabel.Text = My.Application.Info.CompanyName.ToString
     End Sub
 
     Private Sub SiteLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles SiteLinkLabel.LinkClicked

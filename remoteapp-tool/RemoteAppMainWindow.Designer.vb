@@ -45,6 +45,7 @@ Partial Class RemoteAppMainWindow
         Me.ToolsMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewRemoteAppadvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,7 +59,6 @@ Partial Class RemoteAppMainWindow
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BackupSaveFileDialog = New System.Windows.Forms.SaveFileDialog()
-        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsMenuStrip.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -224,7 +224,6 @@ Partial Class RemoteAppMainWindow
         Me.CreateClientConnection.AutoSize = True
         Me.CreateClientConnection.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CreateClientConnection.Enabled = False
-        Me.CreateClientConnection.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.CreateClientConnection.ImageIndex = 3
         Me.CreateClientConnection.ImageList = Me.SmallerIcons
         Me.CreateClientConnection.Location = New System.Drawing.Point(214, 223)
@@ -260,6 +259,12 @@ Partial Class RemoteAppMainWindow
         Me.NewRemoteAppadvancedToolStripMenuItem.Name = "NewRemoteAppadvancedToolStripMenuItem"
         Me.NewRemoteAppadvancedToolStripMenuItem.Size = New System.Drawing.Size(293, 26)
         Me.NewRemoteAppadvancedToolStripMenuItem.Text = "New RemoteApp (advanced)..."
+        '
+        'DuplicateToolStripMenuItem
+        '
+        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
+        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(293, 26)
+        Me.DuplicateToolStripMenuItem.Text = "Duplicate RemoteApp"
         '
         'ToolStripSeparator2
         '
@@ -342,12 +347,6 @@ Partial Class RemoteAppMainWindow
         '
         Me.BackupSaveFileDialog.DefaultExt = "reg"
         Me.BackupSaveFileDialog.Filter = "Windows Registry file|*.reg"
-        '
-        'DuplicateToolStripMenuItem
-        '
-        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
-        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(293, 26)
-        Me.DuplicateToolStripMenuItem.Text = "Duplicate RemoteApp"
         '
         'RemoteAppMainWindow
         '

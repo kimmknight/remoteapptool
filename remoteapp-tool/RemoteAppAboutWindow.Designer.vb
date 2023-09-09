@@ -38,9 +38,9 @@ Partial Class RemoteAppAboutWindow
         '
         Me.TitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.TitleLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TitleLabel.Location = New System.Drawing.Point(17, 9)
+        Me.TitleLabel.Location = New System.Drawing.Point(16, 9)
         Me.TitleLabel.Name = "TitleLabel"
-        Me.TitleLabel.Size = New System.Drawing.Size(263, 30)
+        Me.TitleLabel.Size = New System.Drawing.Size(350, 30)
         Me.TitleLabel.TabIndex = 0
         Me.TitleLabel.Text = "RemoteApp Tool"
         Me.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -48,9 +48,9 @@ Partial Class RemoteAppAboutWindow
         'VersionLabel
         '
         Me.VersionLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.VersionLabel.Location = New System.Drawing.Point(17, 39)
+        Me.VersionLabel.Location = New System.Drawing.Point(16, 39)
         Me.VersionLabel.Name = "VersionLabel"
-        Me.VersionLabel.Size = New System.Drawing.Size(263, 30)
+        Me.VersionLabel.Size = New System.Drawing.Size(350, 30)
         Me.VersionLabel.TabIndex = 0
         Me.VersionLabel.Text = "Version 0.0.0.0"
         Me.VersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -58,9 +58,9 @@ Partial Class RemoteAppAboutWindow
         'CopyrightLabel
         '
         Me.CopyrightLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.CopyrightLabel.Location = New System.Drawing.Point(17, 69)
+        Me.CopyrightLabel.Location = New System.Drawing.Point(16, 69)
         Me.CopyrightLabel.Name = "CopyrightLabel"
-        Me.CopyrightLabel.Size = New System.Drawing.Size(263, 30)
+        Me.CopyrightLabel.Size = New System.Drawing.Size(350, 53)
         Me.CopyrightLabel.TabIndex = 0
         Me.CopyrightLabel.Text = "Kim Knight, Brian Gale"
         Me.CopyrightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -68,9 +68,9 @@ Partial Class RemoteAppAboutWindow
         'SiteLinkLabel
         '
         Me.SiteLinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.SiteLinkLabel.Location = New System.Drawing.Point(15, 129)
+        Me.SiteLinkLabel.Location = New System.Drawing.Point(16, 152)
         Me.SiteLinkLabel.Name = "SiteLinkLabel"
-        Me.SiteLinkLabel.Size = New System.Drawing.Size(271, 30)
+        Me.SiteLinkLabel.Size = New System.Drawing.Size(350, 30)
         Me.SiteLinkLabel.TabIndex = 1
         Me.SiteLinkLabel.TabStop = True
         Me.SiteLinkLabel.Text = "https://github.com/kimmknight/remoteapptool"
@@ -79,9 +79,9 @@ Partial Class RemoteAppAboutWindow
         'IconLibCreatedByLabel
         '
         Me.IconLibCreatedByLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.IconLibCreatedByLabel.Location = New System.Drawing.Point(17, 189)
+        Me.IconLibCreatedByLabel.Location = New System.Drawing.Point(16, 212)
         Me.IconLibCreatedByLabel.Name = "IconLibCreatedByLabel"
-        Me.IconLibCreatedByLabel.Size = New System.Drawing.Size(263, 30)
+        Me.IconLibCreatedByLabel.Size = New System.Drawing.Size(350, 30)
         Me.IconLibCreatedByLabel.TabIndex = 4
         Me.IconLibCreatedByLabel.Text = "Created by CastorTiu"
         Me.IconLibCreatedByLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -90,9 +90,9 @@ Partial Class RemoteAppAboutWindow
         '
         Me.IconLibLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.IconLibLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconLibLabel.Location = New System.Drawing.Point(17, 159)
+        Me.IconLibLabel.Location = New System.Drawing.Point(16, 182)
         Me.IconLibLabel.Name = "IconLibLabel"
-        Me.IconLibLabel.Size = New System.Drawing.Size(263, 30)
+        Me.IconLibLabel.Size = New System.Drawing.Size(350, 30)
         Me.IconLibLabel.TabIndex = 5
         Me.IconLibLabel.Text = "IconLib"
         Me.IconLibLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -100,9 +100,9 @@ Partial Class RemoteAppAboutWindow
         'IconLibLinkLabel
         '
         Me.IconLibLinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.IconLibLinkLabel.Location = New System.Drawing.Point(12, 249)
+        Me.IconLibLinkLabel.Location = New System.Drawing.Point(16, 309)
         Me.IconLibLinkLabel.Name = "IconLibLinkLabel"
-        Me.IconLibLinkLabel.Size = New System.Drawing.Size(274, 30)
+        Me.IconLibLinkLabel.Size = New System.Drawing.Size(350, 30)
         Me.IconLibLinkLabel.TabIndex = 1
         Me.IconLibLinkLabel.TabStop = True
         Me.IconLibLinkLabel.Text = "https://creativecommons.org/licenses/by-sa/3.0/"
@@ -111,9 +111,9 @@ Partial Class RemoteAppAboutWindow
         'IconLibLicenceTextLabel
         '
         Me.IconLibLicenceTextLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.IconLibLicenceTextLabel.Location = New System.Drawing.Point(17, 219)
+        Me.IconLibLicenceTextLabel.Location = New System.Drawing.Point(16, 242)
         Me.IconLibLicenceTextLabel.Name = "IconLibLicenceTextLabel"
-        Me.IconLibLicenceTextLabel.Size = New System.Drawing.Size(263, 30)
+        Me.IconLibLicenceTextLabel.Size = New System.Drawing.Size(350, 67)
         Me.IconLibLicenceTextLabel.TabIndex = 4
         Me.IconLibLicenceTextLabel.Text = "Licensed under a Creative Commons" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Attribution-Share Alike 3.0 Unported License"
         Me.IconLibLicenceTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -121,19 +121,19 @@ Partial Class RemoteAppAboutWindow
         'RemoteAppToolLicenceTextLabel
         '
         Me.RemoteAppToolLicenceTextLabel.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.RemoteAppToolLicenceTextLabel.Location = New System.Drawing.Point(17, 99)
+        Me.RemoteAppToolLicenceTextLabel.Location = New System.Drawing.Point(16, 122)
         Me.RemoteAppToolLicenceTextLabel.Name = "RemoteAppToolLicenceTextLabel"
-        Me.RemoteAppToolLicenceTextLabel.Size = New System.Drawing.Size(263, 30)
+        Me.RemoteAppToolLicenceTextLabel.Size = New System.Drawing.Size(350, 30)
         Me.RemoteAppToolLicenceTextLabel.TabIndex = 6
         Me.RemoteAppToolLicenceTextLabel.Text = "Licensed under The MIT License"
         Me.RemoteAppToolLicenceTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'RemoteAppAboutWindow
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(298, 296)
+        Me.ClientSize = New System.Drawing.Size(378, 357)
         Me.Controls.Add(Me.RemoteAppToolLicenceTextLabel)
         Me.Controls.Add(Me.IconLibLicenceTextLabel)
         Me.Controls.Add(Me.IconLibCreatedByLabel)

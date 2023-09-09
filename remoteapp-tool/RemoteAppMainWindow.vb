@@ -33,6 +33,17 @@ Public Class RemoteAppMainWindow
     End Sub
 
     Public Sub ReloadApps()
+
+        Dim SelectedIndex = -1
+        Dim SelectedName = ""
+        Dim ItemsCount = Me.AppList.Items.Count
+
+        ' Save the selection if there is one
+        If Me.AppList.SelectedItems.Count > 0 Then
+            SelectedIndex = Me.AppList.SelectedItems(0).Index
+            SelectedName = Me.AppList.SelectedItems(0).Text
+        End If
+
         Me.AppList.Clear()
 
         Dim SystemApps As New SystemRemoteApps
@@ -51,16 +62,19 @@ Public Class RemoteAppMainWindow
             AppList.Items.Add(AppItem)
         Next
 
-        If Apps.Count = 0 Then
-            NoAppsLabel.Visible = True
-        Else
-            NoAppsLabel.Visible = False
+        ' If there was previously a selection AND
+        ' and an app hasn't just been removed
+        ' and if the text of that selection hasn't changed
+        ' then select the item again.
+        If SelectedIndex > -1 Then
+            If Me.AppList.Items.Count >= ItemsCount Then
+                If Me.AppList.Items(SelectedIndex).Text = SelectedName Then
+                    Me.AppList.Items(SelectedIndex).Selected = True
+                End If
+            End If
         End If
 
-        EditButton.Enabled = False
-        DeleteButton.Enabled = False
-        CreateClientConnection.Enabled = False
-        Me.DuplicateToolStripMenuItem.Enabled = False
+        UpdateWindowStateBasedOnSelection()
     End Sub
 
     Private Sub AppList_DoubleClick(sender As Object, e As EventArgs) Handles AppList.DoubleClick
@@ -70,6 +84,10 @@ Public Class RemoteAppMainWindow
     End Sub
 
     Private Sub AppList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles AppList.SelectedIndexChanged
+        UpdateWindowStateBasedOnSelection()
+    End Sub
+
+    Private Sub UpdateWindowStateBasedOnSelection()
         If AppList.SelectedItems.Count = 1 Then
             Me.EditButton.Enabled = True
             Me.DeleteButton.Enabled = True
@@ -80,6 +98,12 @@ Public Class RemoteAppMainWindow
             Me.DeleteButton.Enabled = False
             Me.CreateClientConnection.Enabled = False
             Me.DuplicateToolStripMenuItem.Enabled = False
+        End If
+
+        If Me.AppList.Items.Count = 0 Then
+            NoAppsLabel.Visible = True
+        Else
+            NoAppsLabel.Visible = False
         End If
     End Sub
 
