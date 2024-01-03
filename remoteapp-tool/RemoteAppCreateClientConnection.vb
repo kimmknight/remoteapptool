@@ -75,6 +75,8 @@ Public Class RemoteAppCreateClientConnection
         My.Settings.SavedSignRDP = False
         My.Settings.SavedSignedAndUnsigned = False
         My.Settings.SavedCertSelected = 0
+        My.Settings.SavedRDPOptions = FlattenArray(RDPOptionsWindow.RecommendedDefaultOptions)
+        additionalOptions = RDPOptionsWindow.RecommendedDefaultOptions
     End Sub
 
     Sub SaveCCWindowSettings()
@@ -97,6 +99,7 @@ Public Class RemoteAppCreateClientConnection
         My.Settings.SavedSignRDP = CheckBoxSignRDPEnabled.Checked
         My.Settings.SavedSignedAndUnsigned = CheckBoxCreateSignedAndUnsigned.Checked
         My.Settings.SavedCertSelected = CertificateComboBox.SelectedIndex
+        My.Settings.SavedRDPOptions = FlattenArray(additionalOptions)
     End Sub
 
     Sub SetCCWindowSettings()
@@ -150,6 +153,14 @@ Public Class RemoteAppCreateClientConnection
             CheckBoxSignRDPEnabled.Checked = False
             CheckBoxCreateSignedAndUnsigned.Checked = False
             CertificateComboBox.Text = ""
+        End If
+
+        If My.Settings.SavedRDPOptions <> "" Then
+            additionalOptions = UnflattenArray(My.Settings.SavedRDPOptions)
+        Else
+            additionalOptions = {
+                {}
+            }
         End If
 
     End Sub
@@ -285,8 +296,6 @@ Public Class RemoteAppCreateClientConnection
 
     Private Sub CreateRDPFile(RDPPath As String, RemoteApp As RemoteAppLib.RemoteApp)
 
-        'Dim App As New RemoteAppLib.RemoteApp = RemoteApp
-        'App = RemoteApp
         Dim FileTypeAssociations As RemoteAppLib.FileTypeAssociationCollection
         FileTypeAssociations = RemoteApp.FileTypeAssociations
 
@@ -304,8 +313,8 @@ Public Class RemoteAppCreateClientConnection
             .remoteapplicationname = RemoteApp.FullName,
             .remoteapplicationprogram = "||" & RemoteApp.Name,
             .remoteapplicationmode = 1,
-            .disableremoteappcapscheck = 1,
-            .alternate_shell = "rdpinit.exe"
+            .alternate_shell = "rdpinit.exe",
+            .AdditionalOptions = ExportAdditionalOptionsRdpString()
         }
 
         If UseRDGatewayCheckBox.Checked Then
@@ -313,19 +322,6 @@ Public Class RemoteAppCreateClientConnection
             If Me.AttemptDirectCheckBox.CheckAlign Then RDPfile.gatewayusagemethod = 2 Else RDPfile.gatewayusagemethod = 1
             RDPfile.gatewayprofileusagemethod = 1
         End If
-
-        RDPfile.prompt_for_credentials_on_client = 1
-        RDPfile.promptcredentialonce = 0
-
-        RDPfile.devicestoredirect = "*"
-        RDPfile.drivestoredirect = "*"
-        RDPfile.redirectcomports = 1
-        RDPfile.redirectdrives = 1
-
-        RDPfile.allow_desktop_composition = 1
-        RDPfile.allow_font_smoothing = 1
-        RDPfile.span_monitors = 1
-        RDPfile.use_multimon = 1
 
         RDPfile.remoteapplicationfileextensions = FlatFileTypes
 
@@ -433,5 +429,66 @@ Public Class RemoteAppCreateClientConnection
             CheckBoxSignRDPEnabled.Checked = True
         End If
     End Sub
+
+    Dim additionalOptions As String(,) = {{}}
+
+    Private Sub RDPOptionsButton_Click(sender As Object, e As EventArgs) Handles RDPOptionsButton.Click
+        additionalOptions = RDPOptionsWindow.EditAdditionalOptions(additionalOptions)
+    End Sub
+
+    Private Function ExportAdditionalOptionsRdpString()
+        Dim selectedIndicesList As New List(Of Integer)
+
+        Dim optionsString As String = ""
+        Dim optionsLength = additionalOptions.GetLength(0)
+        For row As Integer = 0 To optionsLength - 1
+            optionsString += additionalOptions(row, 1) & ":"
+            optionsString += additionalOptions(row, 2) & ":"
+            optionsString += additionalOptions(row, 3) & vbCrLf
+        Next
+
+        Return optionsString.Trim()
+    End Function
+
+    Shared Function FlattenArray(arr As String(,)) As String
+        ' Flatten the array to a CSV-like string
+        Dim csvLines As New List(Of String)
+
+        For i As Integer = 0 To arr.GetLength(0) - 1
+            Dim lineValues As New List(Of String)
+
+            For j As Integer = 0 To arr.GetLength(1) - 1
+                lineValues.Add(arr(i, j))
+            Next
+
+            csvLines.Add(String.Join("|", lineValues))
+        Next
+
+        Return String.Join(Environment.NewLine, csvLines)
+    End Function
+
+    Shared Function UnflattenArray(csv As String) As String(,)
+        ' Unflatten the CSV-like string to an array
+        Dim csvLines = csv.Split({Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+
+        If csvLines.Length = 0 Then
+            ' Handle the case when the array is empty
+            Return New String(,) {{}}
+        End If
+
+        Dim numRows = csvLines.Length
+        Dim numCols = csvLines(0).Split("|"c).Length
+        Dim arr(numRows - 1, numCols - 1) As String
+
+        For i As Integer = 0 To numRows - 1
+            Dim lineValues = csvLines(i).Split("|"c)
+
+            For j As Integer = 0 To numCols - 1
+                arr(i, j) = lineValues(j)
+            Next
+        Next
+
+        Return arr
+    End Function
 
 End Class

@@ -69,6 +69,7 @@ Partial Class RemoteAppCreateClientConnection
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.HostTabPage = New System.Windows.Forms.TabPage()
         Me.OptionsTabPage = New System.Windows.Forms.TabPage()
+        Me.RDPOptionsButton = New System.Windows.Forms.Button()
         Me.GatewayTabPage = New System.Windows.Forms.TabPage()
         Me.FileTypesTabPage = New System.Windows.Forms.TabPage()
         Me.MSIOptionsTabPage = New System.Windows.Forms.TabPage()
@@ -544,6 +545,7 @@ Partial Class RemoteAppCreateClientConnection
         '
         'OptionsTabPage
         '
+        Me.OptionsTabPage.Controls.Add(Me.RDPOptionsButton)
         Me.OptionsTabPage.Controls.Add(Me.MSIRadioButton)
         Me.OptionsTabPage.Controls.Add(Me.RDPRadioButton)
         Me.OptionsTabPage.Controls.Add(Me.EditAfterSave)
@@ -555,6 +557,19 @@ Partial Class RemoteAppCreateClientConnection
         Me.OptionsTabPage.TabIndex = 1
         Me.OptionsTabPage.Text = "Options"
         Me.OptionsTabPage.UseVisualStyleBackColor = True
+        '
+        'RDPOptionsButton
+        '
+        Me.RDPOptionsButton.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.RDPOptionsButton.ImageIndex = 6
+        Me.RDPOptionsButton.ImageList = Me.SmallerIcons
+        Me.RDPOptionsButton.Location = New System.Drawing.Point(12, 69)
+        Me.RDPOptionsButton.Name = "RDPOptionsButton"
+        Me.RDPOptionsButton.Size = New System.Drawing.Size(118, 29)
+        Me.RDPOptionsButton.TabIndex = 5
+        Me.RDPOptionsButton.Text = "RDP options..."
+        Me.RDPOptionsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.RDPOptionsButton.UseVisualStyleBackColor = False
         '
         'GatewayTabPage
         '
@@ -719,4 +734,5 @@ Partial Class RemoteAppCreateClientConnection
     Friend WithEvents MSIOptionsTabPage As TabPage
     Friend WithEvents SigningTabPage As TabPage
     Friend WithEvents RdpsignErrorLabel As Label
+    Friend WithEvents RDPOptionsButton As Button
 End Class

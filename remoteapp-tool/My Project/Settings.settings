@@ -68,5 +68,14 @@
     <Setting Name="SavedCertSelected" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="SavedRDPOptions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">disableremoteappcapscheck|disableremoteappcapscheck|i|1
+drivestoredirect|drivestoredirect|s|*
+prompt_for_credentials|prompt for credentials|i|1
+promptcredentialonce|promptcredentialonce|i|0
+redirectcomports|redirectcomports|i|1
+span_monitors|span monitors|i|1
+use_multimon|use multimon|i|1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
