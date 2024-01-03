@@ -4,7 +4,7 @@
 
 With Microsoft RemoteApp technology, you can seamlessly use an application that is running on another computer.
 
-RemoteApp Tool is a utility that allows you to create/manage RemoteApps hosted on Windows (7, 8, 10, XP and Server) as well as generate RDP and MSI files for clients.
+RemoteApp Tool is a utility that allows you to create/manage RemoteApps hosted on Windows (7, 8, 10, 11, XP and Server) as well as generate RDP and MSI files for clients.
 
 If you want your RemoteApps to appear in the Start Menu of your clients, or via a web interface, check out [RAWeb](https://github.com/kimmknight/raweb)!
 
