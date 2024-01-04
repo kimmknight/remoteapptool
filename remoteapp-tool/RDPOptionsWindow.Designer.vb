@@ -90,13 +90,14 @@ Partial Class RDPOptionsWindow
         Me.ChangedOptionsListView.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3})
         Me.ChangedOptionsListView.FullRowSelect = True
         Me.ChangedOptionsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+        Me.ChangedOptionsListView.HideSelection = False
         Me.ChangedOptionsListView.Location = New System.Drawing.Point(11, 238)
         Me.ChangedOptionsListView.Margin = New System.Windows.Forms.Padding(2)
         Me.ChangedOptionsListView.MultiSelect = False
         Me.ChangedOptionsListView.Name = "ChangedOptionsListView"
         Me.ChangedOptionsListView.Size = New System.Drawing.Size(564, 117)
         Me.ChangedOptionsListView.Sorting = System.Windows.Forms.SortOrder.Ascending
-        Me.ChangedOptionsListView.TabIndex = 4
+        Me.ChangedOptionsListView.TabIndex = 6
         Me.ChangedOptionsListView.UseCompatibleStateImageBehavior = False
         Me.ChangedOptionsListView.View = System.Windows.Forms.View.Details
         '
@@ -123,7 +124,7 @@ Partial Class RDPOptionsWindow
         Me.SaveButton.Margin = New System.Windows.Forms.Padding(2)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(64, 29)
-        Me.SaveButton.TabIndex = 5
+        Me.SaveButton.TabIndex = 9
         Me.SaveButton.Text = "Close"
         Me.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SaveButton.UseVisualStyleBackColor = False
@@ -150,7 +151,7 @@ Partial Class RDPOptionsWindow
         Me.ResetButton.Margin = New System.Windows.Forms.Padding(2)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(90, 29)
-        Me.ResetButton.TabIndex = 5
+        Me.ResetButton.TabIndex = 8
         Me.ResetButton.Text = "Clear all"
         Me.ResetButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ResetButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -162,7 +163,7 @@ Partial Class RDPOptionsWindow
         Me.Label2.Location = New System.Drawing.Point(12, 221)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(97, 15)
-        Me.Label2.TabIndex = 6
+        Me.Label2.TabIndex = 5
         Me.Label2.Text = "Selected options:"
         '
         'DefaultsButton
@@ -175,7 +176,7 @@ Partial Class RDPOptionsWindow
         Me.DefaultsButton.Margin = New System.Windows.Forms.Padding(2)
         Me.DefaultsButton.Name = "DefaultsButton"
         Me.DefaultsButton.Size = New System.Drawing.Size(89, 29)
-        Me.DefaultsButton.TabIndex = 5
+        Me.DefaultsButton.TabIndex = 7
         Me.DefaultsButton.Text = "Defaults"
         Me.DefaultsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.DefaultsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -191,7 +192,7 @@ Partial Class RDPOptionsWindow
         Me.ResetValueButton.Margin = New System.Windows.Forms.Padding(2)
         Me.ResetValueButton.Name = "ResetValueButton"
         Me.ResetValueButton.Size = New System.Drawing.Size(25, 25)
-        Me.ResetValueButton.TabIndex = 7
+        Me.ResetValueButton.TabIndex = 4
         Me.ResetValueButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ResetValueButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ResetValueButton.UseVisualStyleBackColor = False
