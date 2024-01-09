@@ -8,7 +8,7 @@ RemoteApp Tool is a utility that allows you to create/manage RemoteApps hosted o
 
 If you want your RemoteApps to appear in the Start Menu of your clients, or via a web interface, check out [RAWeb](https://github.com/kimmknight/raweb)!
 
-If you have questions, comments or suggestions about RemoteApp Tool, please visit the [forum](https://groups.google.com/forum/embed/?place=forum/remoteapptool).
+If you have questions, comments or suggestions about RemoteApp Tool, please visit [Discussions](https://github.com/kimmknight/remoteapptool/discussions).
 
 ## Features
 
