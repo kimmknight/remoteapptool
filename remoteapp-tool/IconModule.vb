@@ -148,7 +148,7 @@ Module IconModule
                 Return Icon.FromHandle(smallIcon)
             End If
         Else
-            Return ReturnIcon(GetSysDir() & "\mstsc.exe", 0)
+            Return ReturnIcon(GetSysDir() & "\user32.dll", 0)
         End If
     End Function
 
