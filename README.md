@@ -40,6 +40,8 @@ If you have questions, comments or suggestions about RemoteApp Tool, please visi
 
 Please note: The latest installer no longer works on Windows XP, use the Zip instead.
 
+Other recent releases are available [here](https://github.com/kimmknight/remoteapptool/releases), and really old releases are available [here](https://github.com/kimmknight/remoteapptool/wiki/Version-history-(pre-GitHub)).
+
 ## User guide
 
 [How to create a RemoteApp and use it on another computer](https://github.com/kimmknight/remoteapptool/wiki/Create-a-RemoteApp-and-use-it-on-another-computer)
