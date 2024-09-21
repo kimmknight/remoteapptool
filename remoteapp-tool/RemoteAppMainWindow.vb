@@ -52,13 +52,16 @@ Public Class RemoteAppMainWindow
         Apps = SystemApps.GetAll
 
         For Each App As RemoteApp In Apps
-            SmallIcons.Images.RemoveByKey(App.Name)
-            Dim TheBitmap = GetAppBitmap(App.Name)
+            ' Check if the image is already present in SmallIcons before adding it
+            If Not Me.SmallIcons.Images.ContainsKey(App.Name) Then
+                Dim TheBitmap = GetAppBitmap(App.Name)
+                Me.SmallIcons.Images.Add(App.Name, TheBitmap)
+            End If
+
+            ' Create the ListView item
             Dim AppItem As New ListViewItem(App.Name)
             AppItem.ToolTipText = App.FullName
-            AppItem.ImageIndex = 0
-            Me.SmallIcons.Images.Add(App.Name, TheBitmap)
-            AppItem.ImageKey = App.Name
+            AppItem.ImageKey = App.Name ' Use the ImageKey as it was set
             AppList.Items.Add(AppItem)
         Next
 
@@ -116,10 +119,19 @@ Public Class RemoteAppMainWindow
     Private Sub EditRemoteApp(AppName As String)
         Dim sra As New SystemRemoteApps
         RemoteAppEditWindow.EditRemoteApp(sra.GetApp(AppName))
+        DeleteImage(AppName)
+        ReloadApps()
+    End Sub
+
+    Private Sub DeleteImage(AppName)
+        If Me.SmallIcons.Images.ContainsKey(AppName) Then
+            Me.SmallIcons.Images.RemoveByKey(AppName)
+        End If
     End Sub
 
     Private Sub DeleteButton_Click(sender As Object, e As EventArgs) Handles DeleteButton.Click
         DeleteRemoteApp(AppList.SelectedItems(0).Text)
+        DeleteImage(AppList.SelectedItems(0).Text)
         ReloadApps()
     End Sub
 

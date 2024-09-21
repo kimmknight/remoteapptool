@@ -12,7 +12,6 @@ Public Class RemoteAppEditWindow
         HelpSystem.SetupTips(Me)
         Me.LoadValues()
         Dim dlgResult = Me.ShowDialog()
-        RemoteAppMainWindow.ReloadApps()
         Me.Dispose()
         Return RemoteApp
     End Function
